@@ -13,8 +13,9 @@ class Mail {
 	//.ghffftessssssssssssssssssssssst
 	
 	
-	public function send_mail($from_name, $sender, $subject, $email, $to_name, $message, $var1, $user_id)
-		{//	echo $from_name, $sender, $subject, $email, $to_name, $message, $var1, $user_id;
+	public function send_mail($from_name, $sender, $subject, $email, $to_name, $message, $var1, $user_id = '')
+		{
+			// echo $from_name, $sender, $subject, $email, $to_name, $message, $var1, $user_id;
 		// exit;
 		$sender = 'noreply@dubarah.com';
 		$mes = '';
@@ -32,7 +33,11 @@ class Mail {
 		
 				$mes = 	$this->CI->templates->job_apply('New Applicants', $to_name, $var1);
 				break;
-			default:
+			case 'privacy':
+		
+				$mes = 	$this->CI->templates->privacy('Privacy Policy Updates' , $to_name, $var1 );
+				break;
+		    default:
 				$mes = "Dear $to_name Welcome at Dubarah network";
 				break;
 		}
@@ -51,9 +56,11 @@ class Mail {
 		    'charset'   => 'utf-8'
 		
 		);
-	
 		
-	
+		
+		
+		
+		
 		//$email = 'maher.kalsh@gmail.com';
 		
 		//$sender = $sender ? $sender : 'noreply@dubarah.com';

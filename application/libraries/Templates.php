@@ -2261,6 +2261,322 @@ class Templates {
 				</html>';
 		return $res;
 	}
+		public function privacy($subject='')
+	{ 
+		$res = '<table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="m_-4025078082634366505bodyTable" style="border-collapse:collapse;height:100%;margin:0;padding:0;width:100%;background-color:#fafafa">
+   <tbody>
+      <tr>
+         <td align="center" valign="top" id="m_-4025078082634366505bodyCell" style="height:100%;margin:0;padding:10px;width:100%;border-top:0">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-4025078082634366505templateContainer" style="border-collapse:collapse;border:0;max-width:600px!important">
+               <tbody>
+                  <tr>
+                     <td valign="top" id="m_-4025078082634366505templatePreheader" style="background:#fafafa none no-repeat center/cover;background-color:#fafafa;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:9px;padding-bottom:9px">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-4025078082634366505mcnImageBlock" style="min-width:100%;border-collapse:collapse">
+                           <tbody class="m_-4025078082634366505mcnImageBlockOuter">
+                              <tr>
+                                 <td valign="top" style="padding:0px" class="m_-4025078082634366505mcnImageBlockInner">
+                                    <table align="left" width="100%" border="0" cellpadding="0" cellspacing="0" class="m_-4025078082634366505mcnImageContentContainer" style="min-width:100%;border-collapse:collapse">
+                                       <tbody>
+                                          <tr>
+                                             <td class="m_-4025078082634366505mcnImageContent" valign="top" style="padding-right:0px;padding-left:0px;padding-top:0;padding-bottom:0">
+                                                <img align="left" alt="" src="https://ci4.googleusercontent.com/proxy/vmjKF3e9iH3MdIg4iGxyARTEn6HgKX7Gc6MjrC5QS8c3ZRh0AXK6lB0hMyzt8WHmQEko32D21oRurEyffHyeOtGKh9lVaQlPogq_gzb9Ai0gXe2KowIhhnMUiJ5QBG0XaSQkjNEh1EsAW-Xg61wU7giOLp-MqHwmmPZsEIU=s0-d-e1-ft#https://gallery.mailchimp.com/826868fb277f25f1473804c2e/images/d3884bd6-22fd-4630-9d2c-65151d3b6a49.png" width="178.5" style="max-width:357px;padding-bottom:0;display:inline!important;vertical-align:bottom;border:0;height:auto;outline:none;text-decoration:none" class="m_-4025078082634366505mcnImage CToWUd">
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td valign="top" id="m_-4025078082634366505templateHeader" style="background:#ffffff none no-repeat center/cover;background-color:#ffffff;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:9px;padding-bottom:0"></td>
+                  </tr>
+                  <tr>
+                     <td valign="top" id="m_-4025078082634366505templateBody" style="background:#ffffff none no-repeat center/cover;background-color:#ffffff;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:2px solid #eaeaea;padding-top:0;padding-bottom:9px">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-4025078082634366505mcnTextBlock" style="min-width:100%;border-collapse:collapse">
+                           <tbody class="m_-4025078082634366505mcnTextBlockOuter">
+                              <tr>
+                                 <td valign="top" class="m_-4025078082634366505mcnTextBlockInner" style="padding-top:9px">
+                                    <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%;min-width:100%;border-collapse:collapse" width="100%" class="m_-4025078082634366505mcnTextContentContainer">
+                                       <tbody>
+                                          <tr>
+                                             <td valign="top" class="m_-4025078082634366505mcnTextContent" style="padding:0px 18px 9px;line-height:200%;word-break:break-word;color:#202020;font-family:Helvetica;font-size:16px;text-align:left">
+                                                <h1 class="m_-4025078082634366505null" style="text-align:left;display:block;margin:0;padding:0;color:#202020;font-family:Helvetica;font-size:26px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:normal">Dubarah is&nbsp;updating its <strong><a href="http://dubarah.com/privacy" style="color:#2baadf;font-weight:normal;text-decoration:underline" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en&amp;q=http://dubarah.com/privacy&amp;source=gmail&amp;ust=1527372768217000&amp;usg=AFQjCNHQCkG3eTzDYNzJ3HtDedYGjFrgYA">Privacy Policy</a></strong>, effective <strong><span class="aBn" data-term="goog_264552580" tabindex="0"><span class="aQJ">May 25, 2018</span></span></strong>.</h1>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-4025078082634366505mcnTextBlock" style="min-width:100%;border-collapse:collapse">
+                           <tbody class="m_-4025078082634366505mcnTextBlockOuter">
+                              <tr>
+                                 <td valign="top" class="m_-4025078082634366505mcnTextBlockInner" style="padding-top:9px">
+                                    <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%;min-width:100%;border-collapse:collapse" width="100%" class="m_-4025078082634366505mcnTextContentContainer">
+                                       <tbody>
+                                          <tr>
+                                             <td valign="top" class="m_-4025078082634366505mcnTextContent" style="padding:0px 18px 9px;line-height:125%;word-break:break-word;color:#202020;font-family:Helvetica;font-size:16px;text-align:left">
+                                                <span style="font-size:14px"><span style="color:#696969">We have recently updated our Privacy Notice to clarify how we protect your personal information in keeping with the EU’s new General Data Protection Regulation (GDPR).&nbsp;<br>
+                                                Our updated Privacy Notice provides more details on:<br>
+                                                - The information that we collect.<br>
+                                                - Tow we use this information.<br>
+                                                - Whom we share some of the information with and why we do so.<br>
+                                                - Why we store, and why we retain the information; and how you can request that your information is updated, corrected, or deleted.<br>
+                                                <br>
+                                                The new Privacy Notice will take effect for existing users on <span class="aBn" data-term="goog_264552581" tabindex="0"><span class="aQJ">25th May, 2018</span></span> and your continued use of DUBARAH services on or after then will be viewed as your acceptance of the terms.<br>
+                                                READ THE PRIVACY NOTICE.</span></span>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-4025078082634366505mcnDividerBlock" style="min-width:100%;border-collapse:collapse;table-layout:fixed!important">
+                           <tbody class="m_-4025078082634366505mcnDividerBlockOuter">
+                              <tr>
+                                 <td class="m_-4025078082634366505mcnDividerBlockInner" style="min-width:100%;padding:18px">
+                                    <table class="m_-4025078082634366505mcnDividerContent" border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-top:2px solid #ffffff;border-collapse:collapse">
+                                       <tbody>
+                                          <tr>
+                                             <td>
+                                                <span></span>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-4025078082634366505mcnButtonBlock" style="min-width:100%;border-collapse:collapse">
+                           <tbody class="m_-4025078082634366505mcnButtonBlockOuter">
+                              <tr>
+                                 <td style="padding-top:0;padding-right:18px;padding-bottom:18px;padding-left:18px" valign="top" align="left" class="m_-4025078082634366505mcnButtonBlockInner">
+                                    <table border="0" cellpadding="0" cellspacing="0" class="m_-4025078082634366505mcnButtonContentContainer" style="border-collapse:separate!important;border-radius:5px;background-color:#c0c0c0">
+                                       <tbody>
+                                          <tr>
+                                             <td align="center" valign="middle" class="m_-4025078082634366505mcnButtonContent" style="font-family:Arial;font-size:16px;padding:15px">
+                                                <a class="m_-4025078082634366505mcnButton" title="My Profile" href="http://dubarah.com" style="font-weight:bold;letter-spacing:normal;line-height:100%;text-align:center;text-decoration:none;color:#ffffff;display:block" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en&amp;q=http://dubarah.com&amp;source=gmail&amp;ust=1527372768217000&amp;usg=AFQjCNG2jAI1S9H1IkIItJoSuzuGwQk1fA">Go to Dubarah</a>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td valign="top" id="m_-4025078082634366505templateFooter" style="background:#fafafa none no-repeat center/cover;background-color:#fafafa;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:9px;padding-bottom:9px">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-4025078082634366505mcnFollowBlock" style="min-width:100%;border-collapse:collapse">
+                           <tbody class="m_-4025078082634366505mcnFollowBlockOuter">
+                              <tr>
+                                 <td align="center" valign="top" style="padding:9px" class="m_-4025078082634366505mcnFollowBlockInner">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-4025078082634366505mcnFollowContentContainer" style="min-width:100%;border-collapse:collapse">
+                                       <tbody>
+                                          <tr>
+                                             <td align="center" style="padding-left:9px;padding-right:9px">
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-collapse:collapse" class="m_-4025078082634366505mcnFollowContent">
+                                                   <tbody>
+                                                      <tr>
+                                                         <td align="center" valign="top" style="padding-top:9px;padding-right:9px;padding-left:9px">
+                                                            <table align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse">
+                                                               <tbody>
+                                                                  <tr>
+                                                                     <td align="center" valign="top">
+                                                                        <table align="left" border="0" cellpadding="0" cellspacing="0" style="display:inline;border-collapse:collapse">
+                                                                           <tbody>
+                                                                              <tr>
+                                                                                 <td valign="top" style="padding-right:10px;padding-bottom:9px" class="m_-4025078082634366505mcnFollowContentItemContainer">
+                                                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-4025078082634366505mcnFollowContentItem" style="border-collapse:collapse">
+                                                                                       <tbody>
+                                                                                          <tr>
+                                                                                             <td align="left" valign="middle" style="padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:9px">
+                                                                                                <table align="left" border="0" cellpadding="0" cellspacing="0" width="" style="border-collapse:collapse">
+                                                                                                   <tbody>
+                                                                                                      <tr>
+                                                                                                         <td align="center" valign="middle" width="24" class="m_-4025078082634366505mcnFollowIconContent">
+                                                                                                            <a href="https://www.facebook.com/dubarah" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en&amp;q=https://www.facebook.com/dubarah&amp;source=gmail&amp;ust=1527372768218000&amp;usg=AFQjCNHNLwjZzms8dhVJJhZv8GiQ-nkSzg"><img src="https://ci6.googleusercontent.com/proxy/LEMUla8kuDg8omSu9pCsKUqMITw-GvbpDwPptk1Hq68mc4H2pnYSANby6eddfrRXyhYenU7cckgmvua4OcZ8Zbauhp7lj6WLD6xNE23W37qi0_KuYZ1eIKr05RNVGykPeq874HpVzxNc=s0-d-e1-ft#https://cdn-images.mailchimp.com/icons/social-block-v2/outline-dark-facebook-48.png" style="display:block;border:0;height:auto;outline:none;text-decoration:none" height="24" width="24" class="CToWUd"></a>
+                                                                                                         </td>
+                                                                                                      </tr>
+                                                                                                   </tbody>
+                                                                                                </table>
+                                                                                             </td>
+                                                                                          </tr>
+                                                                                       </tbody>
+                                                                                    </table>
+                                                                                 </td>
+                                                                              </tr>
+                                                                           </tbody>
+                                                                        </table>
+                                                                        <table align="left" border="0" cellpadding="0" cellspacing="0" style="display:inline;border-collapse:collapse">
+                                                                           <tbody>
+                                                                              <tr>
+                                                                                 <td valign="top" style="padding-right:10px;padding-bottom:9px" class="m_-4025078082634366505mcnFollowContentItemContainer">
+                                                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-4025078082634366505mcnFollowContentItem" style="border-collapse:collapse">
+                                                                                       <tbody>
+                                                                                          <tr>
+                                                                                             <td align="left" valign="middle" style="padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:9px">
+                                                                                                <table align="left" border="0" cellpadding="0" cellspacing="0" width="" style="border-collapse:collapse">
+                                                                                                   <tbody>
+                                                                                                      <tr>
+                                                                                                         <td align="center" valign="middle" width="24" class="m_-4025078082634366505mcnFollowIconContent">
+                                                                                                            <a href="https://twitter.com/dubarah" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en&amp;q=https://twitter.com/dubarah&amp;source=gmail&amp;ust=1527372768218000&amp;usg=AFQjCNEva8mvljy_lc8L8Jil6SKbWfVmeQ"><img src="https://ci5.googleusercontent.com/proxy/rLjR5p2oslsitlijyWzw4S7wYf3LsflShHh1Ij_Yl8E7dLUhLft6rSRvNmfEM9TM5u5NlkoU40k123J7Iyro0NWUK51tT85pk6Qei3u_yKU8YE6Q2vGYxXdAxwagDADwq-1y3FhARWQ=s0-d-e1-ft#https://cdn-images.mailchimp.com/icons/social-block-v2/outline-dark-twitter-48.png" style="display:block;border:0;height:auto;outline:none;text-decoration:none" height="24" width="24" class="CToWUd"></a>
+                                                                                                         </td>
+                                                                                                      </tr>
+                                                                                                   </tbody>
+                                                                                                </table>
+                                                                                             </td>
+                                                                                          </tr>
+                                                                                       </tbody>
+                                                                                    </table>
+                                                                                 </td>
+                                                                              </tr>
+                                                                           </tbody>
+                                                                        </table>
+                                                                        <table align="left" border="0" cellpadding="0" cellspacing="0" style="display:inline;border-collapse:collapse">
+                                                                           <tbody>
+                                                                              <tr>
+                                                                                 <td valign="top" style="padding-right:10px;padding-bottom:9px" class="m_-4025078082634366505mcnFollowContentItemContainer">
+                                                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-4025078082634366505mcnFollowContentItem" style="border-collapse:collapse">
+                                                                                       <tbody>
+                                                                                          <tr>
+                                                                                             <td align="left" valign="middle" style="padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:9px">
+                                                                                                <table align="left" border="0" cellpadding="0" cellspacing="0" width="" style="border-collapse:collapse">
+                                                                                                   <tbody>
+                                                                                                      <tr>
+                                                                                                         <td align="center" valign="middle" width="24" class="m_-4025078082634366505mcnFollowIconContent">
+                                                                                                            <a href="https://www.linkedin.com/company/dubarah" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en&amp;q=https://www.linkedin.com/company/dubarah&amp;source=gmail&amp;ust=1527372768218000&amp;usg=AFQjCNGhkzJFMWuXNgx0ppxLLoykNKfoww"><img src="https://ci6.googleusercontent.com/proxy/p43OwM3a9S7fUsY8N8TprKTLvufF9M6kU38usSJVqZjzmjoUA9jlcznqMxdHZfkV5HseqHRf6-V_HkuyR1yf9dybI7feEv2l8xgYPWcJzhMoXGtpX9NEMADg6IZDHjSAHxQ1vPSfR4zQ=s0-d-e1-ft#https://cdn-images.mailchimp.com/icons/social-block-v2/outline-dark-linkedin-48.png" style="display:block;border:0;height:auto;outline:none;text-decoration:none" height="24" width="24" class="CToWUd"></a>
+                                                                                                         </td>
+                                                                                                      </tr>
+                                                                                                   </tbody>
+                                                                                                </table>
+                                                                                             </td>
+                                                                                          </tr>
+                                                                                       </tbody>
+                                                                                    </table>
+                                                                                 </td>
+                                                                              </tr>
+                                                                           </tbody>
+                                                                        </table>
+                                                                        <table align="left" border="0" cellpadding="0" cellspacing="0" style="display:inline;border-collapse:collapse">
+                                                                           <tbody>
+                                                                              <tr>
+                                                                                 <td valign="top" style="padding-right:10px;padding-bottom:9px" class="m_-4025078082634366505mcnFollowContentItemContainer">
+                                                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-4025078082634366505mcnFollowContentItem" style="border-collapse:collapse">
+                                                                                       <tbody>
+                                                                                          <tr>
+                                                                                             <td align="left" valign="middle" style="padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:9px">
+                                                                                                <table align="left" border="0" cellpadding="0" cellspacing="0" width="" style="border-collapse:collapse">
+                                                                                                   <tbody>
+                                                                                                      <tr>
+                                                                                                         <td align="center" valign="middle" width="24" class="m_-4025078082634366505mcnFollowIconContent">
+                                                                                                            <a href="https://www.instagram.com/dubarah/" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en&amp;q=https://www.instagram.com/dubarah/&amp;source=gmail&amp;ust=1527372768218000&amp;usg=AFQjCNEprqHxJb-MZULB7XXTmWanQSTD_Q"><img src="https://ci3.googleusercontent.com/proxy/m4YE8mc4Y5NE0I1epNV2hZDYeVoJzeHgyaZl8gDde3IPHx4US2LFl5crSiyn37EmqQ8fgf6jELVaatCJVCafsAdRzuGNP86n__BNHamhJT0EGQfFemXXeKUKIZOelzxDy2XmS3Nl-1EP7g=s0-d-e1-ft#https://cdn-images.mailchimp.com/icons/social-block-v2/outline-dark-instagram-48.png" style="display:block;border:0;height:auto;outline:none;text-decoration:none" height="24" width="24" class="CToWUd"></a>
+                                                                                                         </td>
+                                                                                                      </tr>
+                                                                                                   </tbody>
+                                                                                                </table>
+                                                                                             </td>
+                                                                                          </tr>
+                                                                                       </tbody>
+                                                                                    </table>
+                                                                                 </td>
+                                                                              </tr>
+                                                                           </tbody>
+                                                                        </table>
+                                                                        <table align="left" border="0" cellpadding="0" cellspacing="0" style="display:inline;border-collapse:collapse">
+                                                                           <tbody>
+                                                                              <tr>
+                                                                                 <td valign="top" style="padding-right:0;padding-bottom:9px" class="m_-4025078082634366505mcnFollowContentItemContainer">
+                                                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-4025078082634366505mcnFollowContentItem" style="border-collapse:collapse">
+                                                                                       <tbody>
+                                                                                          <tr>
+                                                                                             <td align="left" valign="middle" style="padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:9px">
+                                                                                                <table align="left" border="0" cellpadding="0" cellspacing="0" width="" style="border-collapse:collapse">
+                                                                                                   <tbody>
+                                                                                                      <tr>
+                                                                                                         <td align="center" valign="middle" width="24" class="m_-4025078082634366505mcnFollowIconContent">
+                                                                                                            <a href="http://dubarah.com" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en&amp;q=http://dubarah.com&amp;source=gmail&amp;ust=1527372768218000&amp;usg=AFQjCNHTI8uBw1hmum_MIDfmSkWTWlFC8A"><img src="https://ci4.googleusercontent.com/proxy/lJeYs-j9kvyX3cSjAU0h8K9ZBv1OUMMwoDDpkC_remAitNMyLyMjLw4LoJiPzh0P48VKUSpEt0RdcjU_bHXXZCGlDM_m6rkOTZjGQKrTdGuNpFJ4OmsO6P6-HzJGHpiNyLbAiQI=s0-d-e1-ft#https://cdn-images.mailchimp.com/icons/social-block-v2/outline-dark-link-48.png" style="display:block;border:0;height:auto;outline:none;text-decoration:none" height="24" width="24" class="CToWUd"></a>
+                                                                                                         </td>
+                                                                                                      </tr>
+                                                                                                   </tbody>
+                                                                                                </table>
+                                                                                             </td>
+                                                                                          </tr>
+                                                                                       </tbody>
+                                                                                    </table>
+                                                                                 </td>
+                                                                              </tr>
+                                                                           </tbody>
+                                                                        </table>
+                                                                     </td>
+                                                                  </tr>
+                                                               </tbody>
+                                                            </table>
+                                                         </td>
+                                                      </tr>
+                                                   </tbody>
+                                                </table>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-4025078082634366505mcnTextBlock" style="min-width:100%;border-collapse:collapse">
+                           <tbody class="m_-4025078082634366505mcnTextBlockOuter">
+                              <tr>
+                                 <td valign="top" class="m_-4025078082634366505mcnTextBlockInner" style="padding-top:9px">
+                                    <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%;min-width:100%;border-collapse:collapse" width="100%" class="m_-4025078082634366505mcnTextContentContainer">
+                                       <tbody>
+                                          <tr>
+                                             <td valign="top" class="m_-4025078082634366505mcnTextContent" style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;color:#656565;font-family:Helvetica;font-size:12px;line-height:150%;text-align:center">
+                                                Copyright © 2017 Dubarah Inc.™ , All rights reserved. Non-Profit Corporation, incorporated under the "Canada NFP Corporation Act. CN# 972045-6 - Toronto, Ontario, Canada<br>
+                                                You can <a style="color:#656565;font-weight:normal;text-decoration:underline">update your preferences</a> or <a style="color:#656565;font-weight:normal;text-decoration:underline">unsubscribe from this list</a>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-4025078082634366505mcnDividerBlock" style="min-width:100%;border-collapse:collapse;table-layout:fixed!important">
+                           <tbody class="m_-4025078082634366505mcnDividerBlockOuter">
+                              <tr>
+                                 <td class="m_-4025078082634366505mcnDividerBlockInner" style="min-width:100%;padding:10px 18px 25px">
+                                    <table class="m_-4025078082634366505mcnDividerContent" border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-top-width:2px;border-top-style:solid;border-top-color:#eeeeee;border-collapse:collapse">
+                                       <tbody>
+                                          <tr>
+                                             <td>
+                                                <span></span>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </td>
+      </tr>
+   </tbody>
+</table>';
+		return $res;
+	}
 	
 	
 }

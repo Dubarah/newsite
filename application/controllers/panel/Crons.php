@@ -9,6 +9,46 @@ class Crons extends CI_Controller {
 		parent::__construct();
 	}
 	
+		public function index($value='')
+		
+		{
+		echo 1;	
+		}
+		public function privacy($value='')
+		{
+				$id= '';
+			
+			 $users = $this->db->query("SELECT * FROM user")->result();
+			$i = 1; 
+			foreach ($users as  $user) {		
+			$from_name = $this->config->item('from_name');
+			$from_email = $this->config->item('from_email');
+			$subject = 'Privacy Policy Updates';
+			$members = $user->email;
+			$to_name = $user->username.' '.$user->lastname;
+			$message = "privacy";
+			$var1 = 'http://dubarah.com/privacy';
+			// echo "$from_name, $from_email, $subject, $members, $to_name, $message , $var1";
+			// exit;
+		
+			 $this->load->library('mail');
+			$sent = $this->mail->send_mail($from_name, $from_email, $subject, $members, $to_name, $message , $var1 , $id ='');
+			echo $sent;
+			exit;
+			$i ++;
+			}
+			echo $i;
+			
+			
+			
+			
+			
+			
+		
+			
+			
+		}
+	
 	public function send_mail($value = '')
     {
         $time = time() - (610 * 60);
