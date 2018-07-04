@@ -1,5 +1,6 @@
 <!-- Header -->
-<?php $this->load->view('heroCitizen/common/header'); ?>
+
+<?php $this->load->view('main/second/header'); ?>
 <div class="wrapper grey-lighten-3">
 <img src="<?php echo base_url()?>asset/imgs/headerCitizen.svg" class="img-fluid intro-img">
 <div class="container" style="max-width: 1000px">

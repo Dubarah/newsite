@@ -23,8 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-//$config['base_url'] 	= 'http://test.dubarah.com/';//'http://90.153.153.253/site/';
-$config['base_url'] 	= 'http://localhost/achievement/';//'http://90.153.153.253/site/';
+$config['base_url'] 	= 'http://test.dubarah.com/';//'http://90.153.153.253/site/';
+//$config['base_url'] 	= 'http://localhost/achievement/';//'http://90.153.153.253/site/';
 
 $config['jwt_token'] 	= 'my_dub_iD';
 $config['secret']		= '6LeYkRMUAAAAACc_cbBh1Lg2nLDAiXj9SgdEdvS9';

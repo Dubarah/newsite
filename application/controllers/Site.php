@@ -37,9 +37,10 @@ class Site extends CI_Controller
 		    // $data = file_get_contents($url);
 		    // $data = json_decode($data);
 		    $this->session->set_userdata('logged_country', 2);
-		    	$data = 'SY';
+			$data = 't';
 		    if (!LANG()) {
-			    switch ((string)$data->country_code) {
+			 switch ($data)  {
+			  // switch ((string)$data->country_code) {
             case 'SY': //Syria
                 $this->session->set_userdata('lang', 'ar');
                 break;
@@ -227,7 +228,7 @@ class Site extends CI_Controller
 		$today  = date('Y-m-d');
 		
 		$sql = "SELECT tp.type_name , tp.type_name_ar	, a.title, a.user_id, a.employer, a.created_at, a.description, a.job_style, a.gender, a.verified , 
-					   DATEDIFF(FROM_UNIXTIME(expiration),'$today') diff,
+					   DATEDIFF(FROM_UNIXTIME(expiration),'2015-01-01') diff,
 					   a.advertisement_id, u.username, u.lastname, co.country_english_name, cat.arabic_name,
 		 			   cat.english_name ,u.username ,a.phone , a.email,a.img, a.job_type,a.address,a.expiration 
 	 	 		  FROM advertisement a , categories cat ,   city ci, country co, user u , job_type tp
@@ -287,6 +288,9 @@ class Site extends CI_Controller
         $data['skils_num'] = $skils_num;
         $data['skills'] = $skils;
         $data['dubarah'] = $dubarah;
+		echo "<pre>";
+		print_r($dubarah->result());
+		exit;
         $data['cats'] = $cats;
         $this->load->view('dubarah', $data);
     }
@@ -1027,14 +1031,15 @@ class Site extends CI_Controller
         $data['job_types'] = $job_types->result();
 		/*echo "<pre>";
         print_r($job_types); exit;*/
-        $this->load->view('categories_main', $data);
-        //$this->load->view('jobs/jobs', $data);
+      //  $this->load->view('categories_main', $data);
+        $this->load->view('jobs/jobs', $data);
     }
 /*-------------------------------#PE$$ Section Start---------------------------------*/
 
 	//New Homepage #PE$$
 	public function indexx(){
 		$data = $this->main_model->home_data();
+		$data['selected'] = 'home';
 		$this->load->view('newIndex/index', $data);
 	}
 

@@ -124,22 +124,28 @@
 			</div><!-- container -->
 		</section><!-- footer-top -->
 
-    <?php if ($this->session->userdata('first_logged')) { ?>
+ 
         <div class="modal fade" id="welcome" role="dialog">
-            <div class="modal-dialog modal-sm">
+            <div class="modal-dialog modal-md">
 
                 <!-- Modal content-->
                 <div class="modal-content" style="background-color: #f1f1f2">
 
-                    <div class="modal-body" style="overflow: hidden; margin-left: 30px; margin-right: 30px">
-                        <center><img src="<?php echo base_url() ?>ass/images/dub-gray.png" style="width: 100%"></center>
+                    <div class="modal-body" style="    height: 331px;overflow: hidden; margin-left: 40px; margin-right: 40px">
+                        <center><img src="<?php echo base_url() ?>ass/images/dub-gray.png" style="width: 50%"></center>
 
-                        <p style="margin-top: 10px; color: #a6a8ab;font-weight: bolder;">Post a Job you have </p>
-                        <a style="padding: 7px 8px 7px 8px;color: black;background-color: #808184; width: 100%; text-align: <?php echo LANG() == 'en' ? 'left' : 'right' ?>" id="btnn" href="#" onclick="add_dubarah()" class="btn"><img src="<?php echo base_url() ?>ass/images/plus-dub-gray.png" style="font-style:bold;height:24px;width:24px;margin-right:10px;"><strong>Add Dubarah</strong></a>
+                        <p style=" color: #a6a8ab;font-weight: bolder;">We have recently updated our Privacy Notice to clarify how we protect your personal information in keeping with the EU’s new General Data Protection Regulation (GDPR). 
+						Our updated Privacy Notice provides more details on:
+						- The information that we collect.
+						- Tow we use this information.
+						- Whom we share some of the information with and why we do so.
+						- Why we store, and why we retain the information; and how you can request that your information is updated, corrected, or deleted.
+						
+						The new Privacy Notice will take effect for existing users on 25th May, 2018 and your continued use of DUBARAH services on or after then will be viewed as your acceptance of the terms.
+						READ THE PRIVACY NOTICE.</p>
+                        <a style="padding: 7px 8px 7px 8px;color: black;background-color: #808184;text-align: <?php echo LANG() == 'en' ? 'left' : 'right' ?>" id="btnn" href="#"  class="btn"><strong>Go to privce</strong></a>
 
-                        <p style="margin-top: 20px; color: #a6a8ab;font-weight: bolder;">Apply for jobs  already exist </p>
-                        <a style="padding: 7px 8px 7px 8px;color: black;background-color: #808184; width: 100%; text-align: <?php echo LANG() == 'en' ? 'left' : 'right' ?>" id="btnn" href="<?php echo  base_url()?>categories_main/2"  class="btn"><img src="<?php echo base_url() ?>ass/images/yes-dub.png" style="font-style:bold;height:24px;width:24px;margin-right:10px;">Apply for a <b>job</b></a>
-
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -148,7 +154,7 @@
 
             </div>
         </div>
-    <?php } ?>
+    
 
 		
 	</footer><!-- footer -->
@@ -404,7 +410,7 @@
                   });
               <?php  } ?>
           }
-        <?php if ($this->session->userdata('first_logged')) { ?>
+        
         $(window).load(function(){
             var modal = $('#welcome'),
                 dialog = modal.find('.modal-dialog');
@@ -419,7 +425,7 @@
               },5000)
 
           });
-        <?php } ?>
+      
         
         
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

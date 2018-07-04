@@ -1,0 +1,651 @@
+@font-face {
+    font-family: duFont;
+    src: url(../fonts/HelveticaNeue.woff);
+}
+
+body {
+    font-family: "duFont" ,"HelveticaNeue-Light", "Helvetica Neue Light",  Helvetica, Arial, "Lucida Grande", sans-serif; 
+}
+
+h1 , h2 ,h3 ,h4 ,h5 ,h6 {
+	font-family : duFont !important ; 
+	font-weight : bold ; 
+}
+
+
+p{
+	
+	    font-weight: bold;
+}
+
+
+
+.jumbotron {
+	
+	
+	    background-color: #f2f2f2;
+		
+	}
+
+.nav-link{
+	
+	
+	
+	
+	color:rgb(255, 255, 255)  !important;
+}
+
+/* Spaces */
+.mar {
+    margin : 15px;
+}
+
+.no-mar {
+    margin: 0 !important;
+}
+
+.mar-top {
+    margin-top : 15px;
+}
+
+.mar-bot {
+    margin-bottom : 15px;
+}
+
+.mar-left {
+    margin-left : 15px;
+}
+
+.mar-right {
+    margin-right : 15px;
+}
+
+.pad {
+    padding:15px !important;
+}
+
+.pad-top {
+    padding-top : 15px ;
+}
+
+.big-pad-bot {
+    padding-bottom: 35px;
+}
+
+.big-pad-top {
+    padding-top: 35px;
+}
+
+/* Some Classes for Design */
+
+.intro-img {
+    min-width: 100%;
+}
+
+.divider {
+    height: 1px !important;
+    overflow: hidden;
+    background-color: #cccccc  !important;
+    margin: 10px 0px !important ;
+}
+
+.add-dubarah-btn {
+    background-color : #f44336 ;
+    color : #fff ;
+
+}
+
+.add-dubarah-btn:hover {
+    background-color : #fff !important;
+    color : #f44336 !important;
+    transition : 0.4s ;
+
+}
+
+.btn-socialMedia {
+    background-color: #eeeeee;
+    color : #616161 !important;
+}
+
+.btn-socialMedia:hover {
+    transition: 0.4s;
+    color : #fff !important;
+}
+
+.addDubarah-bigBorder {
+    border-radius: 15px;
+}
+.addDubarah-bigBorder-top {
+    border-radius: 10px 10px 0px 0px ;
+}
+
+.no-border {
+    border: 0px solid transparent !important;
+}
+
+.no-border-radius {
+    border-radius: 0px !important;
+}
+
+.btn-login-register {
+    width: 100%;
+    color: #616161 !important;
+    text-decoration: none !important;
+}
+
+.btn-login-register:active {
+    color: #000 !important;
+    border-bottom: 2px solid #000;
+}
+
+
+.serv-card{
+	
+	
+	
+	height: 119px;
+    padding-top: 12px;
+}
+
+.btn-login-register:hover {
+    color: #000 !important;
+}
+
+.add-dubarah-img {
+    width : 75px ;
+    height : 75px;
+    border-radius: 8px ;
+
+}
+
+.hide-after-icon:after {
+    display: none !important;
+}
+
+.btn-icon {
+    color : #ffffff ;
+    background-color: transparent;
+    border: 0px solid transparent !important;
+}
+
+.btn-icon:hover {
+    color : #fff;
+}
+
+.btn-icon:focus {
+    box-shadow: none !important;
+}
+
+*:focus {
+    outline: none;
+}
+
+.larg-drop{
+    width : 20rem !important;
+}
+
+.hiddden {
+    display: none;
+}
+
+.disabled-card {
+    opacity: 0.3;
+}
+
+.on-img {
+    position: absolute;
+}
+
+.small-media-img {
+    width : 100px !important;
+    height: 100px !important;
+}
+
+.circle-div {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #212121;
+    text-align: center;
+    font-size: 30px;
+    margin: 0 15px;
+}
+
+.card-size {
+	
+	width: 190px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+
+.card{
+	
+	margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+
+.hero-card:hover{
+	
+	     border: 8px solid #f7c623;
+		 border-top-left-radius: 10px;
+		 border-top-right-radius: 10px;
+		 border-bottom-left-radius: 10px;
+		 border-bottom-right-radius: 10px;
+	
+}
+.hero-card {
+	
+	border: 8px solid white;
+	 border-top-left-radius: 10px;
+	 border-top-right-radius: 10px;
+	 border-bottom-left-radius: 10px;
+	 border-bottom-right-radius: 10px;
+}
+
+/* green success circle in achivment */
+.float-green {
+    position: relative;
+}
+
+.true-float {
+    position: absolute;
+    top: -45px;
+    right: -36px;
+}
+
+/* COLORS  */
+
+/* RED Color  */
+.red {background-color: #f44336 !important ; }
+.red-text {color : #f44336 !important ; }
+/* GREY Color */
+.grey {background-color: #9e9e9e !important ; }
+.grey-text {color : #9e9e9e !important ; }
+
+.grey-darken-4 {background-color: #212121 !important;}
+.grey-darken-4-text {color: #212121 !important;}
+.grey-darken-3 {background-color: #424242 !important;}
+.grey-darken-3-text {color: #424242 !important;}
+.grey-darken-2 {background-color: #616161 !important;}
+.grey-darken-2-text {color: #616161 !important;}
+
+.grey-lighten-2 {background-color: #e0e0e0 !important ;}
+.grey-lighten-2-text { color : #e0e0e0 !important ;}
+.grey-lighten-3 {background-color: #eeeeee !important ;}
+.grey-lighten-3-text { color : #eeeeee !important ;}
+
+/* Social Media COLORS */
+.facebook-color { background-color:#2d4373 !important ;  }
+.facebook-color:hover { background-color:#395693 !important ;  }
+.facebook-color-text {color : #2d4373 !important ; }
+
+
+
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+
+.img-hero {
+
+	height:200px;
+	width: 100%;
+	object-fit: cover;
+}
+
+
+/* FOOTER  */
+
+.page-footer {
+	text-align: left;
+    padding-top: 20px;
+    color: #fff;
+    background-color: #ffffff;
+}
+
+footer {
+    font-size: .9rem;
+    display: block;
+}
+
+.page-footer .footer-copyright {
+    font-weight: 300;
+}
+
+.page-footer .footer-copyright {
+    overflow: hidden;
+    min-height: 50px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 10px 0px;
+}
+
+/* test user info profile */
+.du-profile img.du-image-lg{
+    z-index: 0;
+    width: 100%;
+    margin-bottom: 10px;
+    height: 15rem;
+}
+
+.du-image-profile
+{
+    margin: -5rem 2rem 0 0;
+    z-index: 9;
+    width: 20%;
+}
+
+
+@media (max-width:768px)
+{
+
+    .du-profile-text>h1{
+        font-weight: 700;
+        font-size:16px;
+    }
+
+    .du-image-profile
+    {
+        margin: -45px 10px 0px 25px;
+        z-index: 9;
+        width: 20%;
+    }
+}
+
+
+/* edit navlinks in home  */
+.home-nave-links {
+    color: #3e3e3e !important;
+}
+.home-nave-links.active {
+    color: #000 !important;
+    background-color: transparent !important;
+    font-weight: bold !important;
+}
+
+.du-blog-homecard {
+    border: 0 solid transparent !important;
+}
+
+.du-blog-homecard>.du-blog-homecard-body {
+    padding:0.5rem 0 !important;
+}
+
+.du-job-homecard {
+    border-bottom: 1px solid #bdbdbd !important;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.rated {
+    color : #f4511e !important; ;
+}
+
+.unrated{
+    color : #9e9e9e !important; ;
+
+}
+
+/*Home Page intro image*/
+.bgimg-1 {
+    position: relative;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.bgimg-1 {
+    background-image: url("../imgs/Header.jpg");
+    min-height: 100%;
+}
+
+
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1 {
+        background-attachment: scroll;
+    }
+}
+
+.transparent {
+    background-color: transparent !important;
+}
+
+/*Profile image*/
+.du-profile{
+    position: relative;
+}
+
+.du-profile-image{
+    max-width: 200px;
+    border: 5px solid #fff;
+    border-radius: 5px;
+}
+
+.du-cover-image{
+    width: 100% !important;
+    height: 170px !important;
+    margin-bottom: 7.5rem;
+}
+
+.du-profile-info{
+    width: 75%;
+    position: absolute;
+    top: 3rem;
+    left: 14rem;
+}
+
+.user-profile-intro{
+    position: relative;
+}
+.user-info{
+    position: absolute;
+    top: 109px;
+    left: 8%;
+}
+
+.user-name-about {
+    text-transform: uppercase;
+    font-weight: bold !important;
+}
+.dropdown-menu{
+	
+	
+	left: -50px !important;
+}
+
+
+.user-country{
+    font-size: 1rem;
+    color: #9e9e9e;
+}
+
+.user-main-achivmnet-logo {
+    width : 62px ;
+    border-radius:4px;
+}
+
+.user-side-achivmnet-logo {
+    width : 75px ;
+}
+
+.achivment-imgs-userprofile {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.user-skill {
+    background-color: #eee;
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 50px;
+}
+
+.setting-side-links {
+    color: #3e3e3e !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    padding: 1.5rem;
+}
+
+.setting-side-links.active {
+    color: #000 !important;
+    font-weight: bold;
+}
+
+.h3-title-setting {
+    padding: 15px 0;
+    color: #f44336 ;
+    border-bottom: 2px solid #eee;
+}
+
+.heroCitizen {
+    width : 80px ;
+}
+a {
+	
+     color: #3e3e3e;
+    text-decoration: none;
+    background-color: #e8e3e300;	
+}
+
+a:hover {
+    color: #060606;
+    text-decoration: underline;
+}
+
+.dropdown-item:hover{
+	
+ color: #141515 !important;	
+ background-color: none;	
+	
+}
+
+.dropdown-item:active{
+	
+    outline: none;
+	background-color: #ffffff;
+	
+}
+.duServicesImg{
+    border-radius: 12px 12px 0 0;
+}
+
+.duServicesCBody{
+    padding:0.5rem !important;
+}
+
+.card-body {
+    padding: 0.5rem !important;
+}
+
+.flagCitizenImgOverlay{
+    position: absolute;
+    top: 9rem;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+}
+
+.blogtitle{
+    background-color: #222222 !important;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    position: absolute;
+   
+    bottom: 0px;
+    margin-right: 5px;
+    right: 3px;
+    padding: 3px 6px 4px;
+}
+
+.appleImgOverlay{
+     position:absolute;
+    bottom: 80px;
+    right: 150px;
+    height: 54px;
+    
+    
+   
+}
+
+button:focus {
+    outline: 0px dotted;
+    outline: 0px auto -webkit-focus-ring-color;
+}
+
+    /* outline: 1px dotted; */
+    /* outline: 5px auto -webkit-focus-ring-color;*/
+
+.andImgOverlay{
+     position:absolute;
+       bottom: 80px;
+    right: 390px;
+    height: 54px;
+    
+}
+
+
+
+.img-cover {
+	 position:relative;
+    display:inline-block;
+    text-align:center;
+
+	
+	
+}
+/*Bussniess Image page*/
+.bgimg-2 {
+    position: relative;
+    text-align: center;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.bgimg-2 {
+    background-image: url("../asset/imgs/Header.jpg");
+    min-height: 100%;
+}
+ .duOrange {  background-color : #e85100 !important ;  }
+        .duOrangeText {  color : #f4511e !important ;  }
+        .duGreen {  background-color: #45FF00 !important;  }
+        .duGreenText {  color: #45FF00 !important;  }
+
+        .intro{
+            min-width: 100%;
+            height:12rem;
+        }
+

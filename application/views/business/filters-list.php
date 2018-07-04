@@ -1,4 +1,4 @@
-<?php $this->load->view('/business/common/header'); ?>
+<?php $this->load->view('main/second/header'); ?>
  <style>
         body, html {
             height: 100%;
@@ -187,7 +187,7 @@
         .realPrice {color : #45FF00 !important ;}
 
     </style>
-<?php $this->load->view('/business/common/navbar'); ?>
+<?php //$this->load->view('/business/common/navbar'); ?>
 	
     <div class="intro duOrange">
         <div style="text-align: center">
@@ -262,18 +262,24 @@
                 </div>
             </div>
               <div style="text-align: center">
-                
-                	
-                	<div class="container">
-                		<div class="row">
-        <div class="col-lg-10 ">
-            <div class="pull-left " > Browsing <strong> 
-                <?php   if (isset($city_search) && count($city_search) > 0 ) 
+                       <div class="container">
+                <div class="row mar-top ">
+                    <div class="col-lg-9">
+                    	
+                        <p class="text-left text-white">Browsing<span class="font-weight-bold">
+                        	
+                         <?php   if (isset($city_search) && count($city_search) > 0 ) 
                          echo $city_search[0]->name ." ," .$city_search[0]->cntry ; 
-                        else  echo "All"; ?>
-              </strong> Businesses  </div>
-            <div class="pull-right " > 
-                Showing <?php 
+                        else  echo "All"; ?> </span> 
+                        	 
+                        	 
+                        	 Businesses</p>
+                    
+                    
+                    
+                    </div>
+                    <div class="col-lg-3">
+                        <p class="text-right text-white">Showing <?php 
                 if(count($businesses) > 10 ) 
                     echo " 1-10 of ".count($businesses); 
                 elseif (count($businesses) < 10 && count($businesses) > 1 ) {
@@ -281,12 +287,11 @@
                 }else{
                      echo "0";
                 }
-                ?>
-                  </div>
-                  
-        </div>
-        </div>
-    </div>
+                ?></p>
+                    </div>
+                </div>
+            </div>
+               
     
         </div>
     </div>
@@ -372,39 +377,42 @@
                       <?php // echo "<pre>" ;print_r($business) ;//exit; ?>
                       	
                       	
-                      	   <div class="col-lg-4">
+                   
+                      	
+                      	    <div class="col-lg-4">
                             <div class="card">
                             	<a href="<?php echo base_url().'business-profile/'.$business['Busi']->id ?>">
                                 <img class="card-img-top" src="<?php echo base_url().$business['Busi']->cover?>" alt="Card image cap">
-                             	 </a>
+                               </a>
                                 <div class="card-body">
-                                	<a href="<?php echo base_url().'business-profile/'.$business['Busi']->id ?>">
+                                	<a href="<?php echo base_url().'business-profile/'. $business['Busi']->id ?>">
                                     <h6 class="card-title"><?php echo $business['Busi']->name ?></h6>
-                                    </a>
+                                   </a>
                                     <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?>asset/imgs/star.svg" /></i>
                                     <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?>asset/imgs/star.svg" /></i>
                                     <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?>asset/imgs/star.svg" /></i>
                                     <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?>asset/imgs/star.svg" /></i>
                                     <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?>asset/imgs/nostae.svg" /></i>
-									
-                                    <!-- <p class="text-muted"><?php $i = 0; foreach ($bus_cat[$business['Busi']->id] as $bus_cat0) { 
-                                  if($i == 2){
-                                      echo "..... ";
-                                      break;
-								  }
-										echo $bus_cat0->name.',';
+								
+                                     <p class="text-muted">
+                                     	<!-- <?php $i = 0; foreach ($bus_cat[$business->id] as $bus_cat) { 
+			                                  if($i == 2){
+			                                      echo "..... ";
+			                                      break;
+											  }
+										echo $bus_cat->name.',';
                                     	
-                                    	 $i++;} ?>
+                                    	 $i++;} ?> -->
                                     	
                     
                                     	
-                                    </p> -->
+                                    </p>
                                
-                                    <p><?php echo $business['Busi']->country_english_name ?></p>
+                                     <p><?php echo $business['Busi']->country_english_name ?></p>
                                 </div>
                             </div>
                         </div>
-                      	
+
                       	
                      
                       <?php  }  //exit; ?>
@@ -412,50 +420,58 @@
                 </div>                 
             </div>
             <div class="col-md-4 row">
+            	
+            	<?php foreach ($calltoaction as $value): ?>
+					
+			
+            	<?php 
+                          
+                          if($value->call_action_btn == 1):
+							  
+							  $text = ' Make your reservation today!';
+							  $butn = ' Contact us ';
+							  
+						  
+						  elseif($value->call_action_btn == 2):
+							    $text = 'Book an Appointment today!';
+							  $butn = 'Book Now  ';
+							  
+						    elseif($value->call_action_btn == 3):
+								
+								    $text = 'Get a Quick Quote Now!';
+							  $butn = 'Get Quote';
+								
+								  elseif($value->call_action_btn == 4):
+									  
+								    $text = 'Sign up today! ';
+							  $butn = 'Sign Up';
+									    elseif($value->call_action_btn == 5):
+											  $text = ' Get to know more about us today! ';
+							  $butn = 'View Website ';
+											
+											endif;
+						  
+						   ?>  	
                 <div id="ma3reft" class="panel" >
                     <div class="col-md-3">
-                        <img  width="100" src="<?php echo base_url()?>ass/images/dub-icon.png"/>
+                        <img  width="100" src="<?php echo base_url().$value->cover?>"/>
                     </div>
                     <div class="col-md-10">
-                        <div class="strong "> Dubarah inc.</div class="strong">
+                        <div class="strong "><?php echo $value->name ?></div class="strong">
                         <div class="small">
-                        Add discreption, cover photo, and
-                        gallery must always be perfect and
-                        up to date</div class="small">
+                        	<?php echo $text ?>
+                    </div class="small">
                         <div class="small">(415) 715-9767 </div>  
-                        <div class="btn  btn-sm btn-outline-secondary"> Get Quote</div>
+                        <!-- <div class="btn  btn-sm btn-outline-secondary"> <a href="<?php echo  $value->call_action_weblink ?>" target="_blank"><?php echo $butn ?> </a></div> -->
+                         <a target="_blank"   href="<?php echo $value->call_action_weblink ?>" class="btn btn-light duOrange text-white no-border font-weight-bold"><?php echo $butn ?></a>
+
                     </div>
                 </div>
                 <br/>
-                <div id="ma3reft" class="panel"  >
-                    <div class="col-md-3">
-                        <img  width="100" src="<?php echo base_url()?>ass/images/dub-icon.png"/>
-                    </div>
-                    <div class="col-md-10">
-                        <div class="strong "> Dubarah inc.</div class="strong">
-                        <div class="small">
-                        Add discreption, cover photo, and
-                        gallery must always be perfect and
-                        up to date</div class="small">
-                        <div class="small">(415) 715-9767 </div>  
-                        <div class="btn  btn-sm btn-outline-secondary"> Get Quote</div>
-                    </div>
-                </div>
-                <br/>
-                <div id="ma3reft"  >
-                    <div class="col-md-3">
-                        <img  width="100" src="<?php echo base_url()?>ass/images/dub-icon.png"/>
-                    </div>
-                    <div class="col-md-10">
-                        <div class="strong "> Dubarah inc.</div class="strong">
-                        <div class="small">
-                        Add discreption, cover photo, and
-                        gallery must always be perfect and
-                        up to date</div class="small">
-                        <div class="small">(415) 715-9767 </div>  
-                        <div class="btn  btn-sm btn-outline-secondary"> Get Quote</div>
-                    </div>
-                </div>
+                
+                	<?php endforeach ?>
+               
+               
             </div>
         </div> 
         <div class="clear mar-top"> </div>

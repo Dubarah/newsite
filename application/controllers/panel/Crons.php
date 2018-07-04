@@ -7,7 +7,29 @@ class Crons extends CI_Controller {
 	
 	function __construct() {
 		parent::__construct();
-	}
+	}	
+	
+	
+		public function call($value='')
+		{
+			
+			$url = 'http://test.dubarah.com/index.php/panel/crons/privacy';
+			
+		$contents = file_get_contents($url); // please do some sanitation here...
+
+		echo $contents;
+		
+		sleep(5);
+		$this->newnew();
+		}
+		
+		
+		
+		public function newnew($value='')
+		{
+			$this->call();
+		}
+		
 	
 		public function index($value='')
 		
@@ -17,8 +39,11 @@ class Crons extends CI_Controller {
 		public function privacy($value='')
 		{
 				$id= '';
+				
+				$user_id = $this->db->query("SELECT user_id FROM privacy where id = 1")->row()->user_id;
+				
 			
-			 $users = $this->db->query("SELECT * FROM user")->result();
+			 $users = $this->db->query("SELECT * FROM user where id > $user_id")->result();
 			$i = 1; 
 			foreach ($users as  $user) {		
 			$from_name = $this->config->item('from_name');
@@ -32,12 +57,20 @@ class Crons extends CI_Controller {
 			// exit;
 		
 			 $this->load->library('mail');
-			$sent = $this->mail->send_mail($from_name, $from_email, $subject, $members, $to_name, $message , $var1 , $id ='');
-			echo $sent;
-			exit;
+			//$sent = $this->mail->send_mail($from_name, $from_email, $subject, $members, $to_name, $message , $var1 , $id ='');
+			
+			  if($i ==5){
+			  	$last_user = $user->id;
+			  	$this->db->where(array('id' => 1));
+				$this->db->update('privacy', array('user_id' =>$last_user ));
+				
+				
+                                   break;
+                            }
+			
 			$i ++;
 			}
-			echo $i;
+			echo "$i ,  id : $last_user " ;
 			
 			
 			

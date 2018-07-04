@@ -42,6 +42,9 @@
             height: 100%;
             margin: 0;
         }
+        
+        
+      
         .form-control::-webkit-input-placeholder { color: #c1c1c1; }  /* WebKit, Blink, Edge */
         .form-control:-moz-placeholder { color: #c1c1c1; }  /* Mozilla Firefox 4 to 18 */
         .form-control::-moz-placeholder { color: #c1c1c1; }  /* Mozilla Firefox 19+ */

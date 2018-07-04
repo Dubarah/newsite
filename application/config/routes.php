@@ -61,16 +61,16 @@ $route['switch_lang'] 					= 'welcome/swich_lang/';
 $route['logout'] 			    		= 'site/logout/';
 $route['login'] 						= 'site/login/';
 $route['signup'] 						= 'site/signup/';
-$route['jobs/(:num)'] 					= 'site/categories_main/$1';
-$route['jobs'] 							= 'site/categories_main';
+$route['jobs/(:num)'] 					= 'jobs/jobs/$1';
+$route['jobs'] 							= 'jobs/jobs';
 $route['forgot_password'] 				= 'site/forgot_password';
 $route['reset_pass/(:any)'] 			= 'site/reset_pass/$1';
 $route['resend_code/(:any)'] 			= 'site/resend_code/$1';
 $route['facebook'] 						= 'site/facebook';
 $route['blog'] 							= 'site/blog';
 $route['admin_view/(:any)'] 			= 'site/admin_view/$1';
-$route['dubarah/(:any)'] 				= 'site/apply_job/$1';
-$route['job/(:any)'] 					= 'site/apply_job/$1';
+
+$route['job/(:any)'] 					= 'jobs/apply_job/$1';
 
 $route['verify_account/(:any)'] 		= 'site/verify_account/$1';
 $route['complete_account'] 				= 'site/complete_account';
@@ -90,18 +90,19 @@ $route['get_notifications'] 			= 'panel/notifications/get_notifications';
 $route['get_city/(:num)'] 		= 'site/get_city/$1';
 $route['sub/(:num)'] 			= 'panel/user/sub/$1';
 $route['newrole/(:num)']   		= 'panel/user/newrole/$1';
-$route['add_dubarah'] 			= 'panel/user/add_dubarah';
+$route['add_job'] 				= 'jobs/add_job';
+$route['edit_job/(:num)'] 				= 'jobs/edit_job/$1';
 
 $route['my_profile'] 			= 'panel/user/profile_settings';
-$route['my_dubarah'] 			= 'panel/user/my_dubarah';
+$route['my_jobs'] 			= 'jobs/my_jobs';
 $route['dubarah'] 				= 'site/dubarah';
 $route['my_dubarah/(:num)'] 	= 'panel/user/my_dubarah/$1';
-$route['my_applicants/(:num)/(:num)'] 	= 'panel/user/my_applicants/$1/$2';
-$route['my_applicants/(:num)'] 			= 'panel/user/my_applicants/$1';
+$route['my_applicants/(:num)/(:num)'] 	= 'jobs/my_applicants/$1/$2';
+$route['my_applicants/(:num)'] 			= 'jobs/my_applicants/$1';
 $route['unpublish_dubarah/(:num)'] 		= 'panel/user/unpublish_dubarah/$1';
 $route['edit_dubarah/(:num)'] 		    = 'panel/user/edit_dubarah/$1';
 $route['delete_dubarah/(:num)'] 		= 'panel/user/delete_dubarah/$1';
-$route['resume/(:any)'] 				= 'panel/user/resume/$1';
+$route['resume/(:any)'] 				= 'jobs/resume/$1';
 $route['download/(:num)'] 				= 'panel/user/download/$1';
 $route['up_img'] 				= 'panel/user/up_img';
 //$route['my_profile'] 				= 'site/my_profile';
@@ -163,7 +164,20 @@ $route['duplus']						= 'site/show_service/11';
 $route['HelpRequest']				= 'site/help_request';
 $route['DuHubForm']					= 'site/hub_form';
 $route['about-dubarah']				= 'site/aboutdubarah';
+/*  JOBS */
+$route['get_jobs_findedcategory']	= 'jobs/get_jobs_findedcategory' ; 
 
+$route['get_jobs_cities']			= 'jobs/get_jobs_cities' ; 
+
+
+
+
+
+
+
+
+
+/*  JOBS */
 
 /*--------------------------#PE$$ Genereal Section End-----------------------------*/
 /*--------------------------#  Business Section Start # ----------------*/
@@ -171,6 +185,8 @@ $route['business-checkbyname/(:any)']	= 'business/business_checkbyname/$1' ;
 $route['get_busin_category/(:num)']	= 'business/business_get_categories/$1' ; 
 
 $route['get_busin_cities']	= 'business/get_busin_cities' ; 
+$route['add-review']	= 'business/add_review' ; 
+
 $route['get_busin_findedcategory']	= 'business/get_busin_findedcategory' ; 
 
 $route['business-filter']			= 'business/businesses_filter' ;  

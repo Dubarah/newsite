@@ -3,7 +3,7 @@
         <div class=" pad_form col-lg-8">
             <p>
                
-                <h2> <strong>  Add Your Business </strong>  2 of 3  </h2>
+                <h4> <strong>  Add Your Business </strong>  2 of 3  </h4>
                 <br/>
                  <div class="alert  alert-dark pad_form" >
                     <i class="fa fa-home"></i> &nbsp;
@@ -21,9 +21,9 @@
             </p>
         </div>  
         <!-- busin_datetimes busin_faq -->
-        <div class="row pad_form col-lg-8">
+        <div class=" pad_form col-lg-8">
             <div class=""> 
-                <h2>Open days and hours </h2>
+                <h4>Open days and hours </h4>
               
             </div> 
             <div class="clear"></div>
@@ -54,12 +54,15 @@
                         <i class="fa-plus fa"></i>
                     </div>
                 </div>
+                <div class="container">
+
+</div>
             </div>
         </div>
         <div class="divider col-lg-8"></div> 
 
-        <div class="row pad_form col-lg-8">
-            <div class="h2">FAQ </div>
+        <div class=" pad_form col-lg-8">
+            <div class="h4">FAQ </div>
             <br/>
             <div class="h6 " >
                 Start adding frequently asked questions and answer it to cover all your customers concerns.
@@ -88,8 +91,8 @@
         <br/>
         <div class="divider col-lg-8"></div>
         <br/>
-        <div class="row pad_form col-lg-8">
-                <h2> About Your Business </h2> <i class='text-danger'>*</i> <br/>
+        <div class=" pad_form col-lg-8">
+                <h4> About Your Business </h4> <i class='text-danger'>*</i> <br/>
                 <textarea id="about" name="about" class="form-control  "  style="height:auto !important; "
                 placeholder="Briefly Explain Your Achievement & What You Did." rows="10"><?php if(isset($busin_data[0]->about) )echo $busin_data[0]->about ?></textarea>
         </div>
@@ -99,7 +102,7 @@
         <div id="LOGO_SCRLL"></div>
         <br/>
         <div class=" pad_form col-lg-8">
-                <h2> Logo <i class='text-danger'>*</i></h2>  <br/>
+                <h4> Logo <i class='text-danger'>*</i></h4>  <br/>
                 <div class="mar-top">
                 <h6> Please upload your business logo <small>(<i> less than 6 MB </i>)</small></h6>
                 </div>
@@ -136,7 +139,7 @@
         <div class="divider col-lg-8"></div>
         <br/>
          <div class=" pad_form col-lg-8">
-                <h2> Upload Business Cover Photo  <i class='text-danger'>*</i></h2> <br/>
+                <h4> Upload Business Cover Photo  <i class='text-danger'>*</i></h4> <br/>
                 <div class="mar-top">
                 <h6> This image will appear on your business card, choose it carefully to be high quality and creative images describe <br/>your business. Good images will be selected to be featured on our homepage cover. <small>(<i> less than 6 MB </i>)</small></h6>
                 </div>
@@ -160,7 +163,7 @@
                             <i class="fa fa-camera"></i>
                         </div>
                        <!--  <button id="cover-del" type="button" class="btn btn-danger red">Delete</button> -->
-                        <input type="hidden" name="cover_img" id="cover_valhide" value="<?=$coverImg?>">
+                        <input type="hidden" name="cover_img" id="cover_valhide" value="<?php echo $coverImg ?>">
                     </div>
                 </div>
             </div>

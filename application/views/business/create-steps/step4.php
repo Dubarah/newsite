@@ -1,17 +1,18 @@
 <div class=""  id="section_bus4">
-    <div class="col text-left col-sm-6">
-        <h3 class="text-success">
+    <div class="col text-left col-sm-12" style="    margin-top: 10px;">
+        <h5 class="text-success">
             <div class="container">
                 <div class="text-left ">
-                    <i class="fa fa-check-circle fa-3x" aria-hidden="true"></i> 
-                    <p > 
+                  
+                    <p >
+                    	  <i class="fa fa-check-circle fa-2x" aria-hidden="true"></i>  
                     Your business listing has been successfully submitted. 
                     </p>
                 </div>
             </div>
-        </h3>
+        </h5>
     </div>
-    <div class="jumbotron bg-white text-left">
+    <div class="jumbotron bg-white text-left  col-sm-8">
         <h1>What Next ?</h1>
         <div class="row">
             <div class="col-sm-8 row">
@@ -100,9 +101,9 @@
                     <h5 class="mt-0">Your profile link is below:</h5>
                     <input class="form-control form-control-lg" type="text" value="<?php echo base_url().'profile/'.$u_id?>" readonly>
                     <br/>
-                   <button type="button" class="btn-default btn col-md-3 pull-right btn-block" 
+                   <button type="button" class="btn-default btn col-md-4 pull-right btn-block" 
                    onclick="location.href='<?php echo base_url()?>business-profile';?>">
-                    Go to my business profile
+                    Go to my business
                      </button>
                 </div>
             </div>

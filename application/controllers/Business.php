@@ -5,17 +5,21 @@ class Business extends CI_Controller
 
     function __construct() {
         parent::__construct();
-        need_login();
+      //  need_login();
         check_lang();
         $this->session->set_userdata('this_url', current_url());
         $this->load->model('BusinessModel');
     }
     public function index()
 	
-    {	 $mainCats = $this->getBusinessMainCategories();
+    {
+    		 $data = $businesses = $this->BusinessModel->home_data();
+			 
+			 $mainCats = $this->getBusinessMainCategories();
        // $ctyId = $this->input->get('city');
         $res=$this->check_filter_inputs($this->input);
-        $businesses = $this->BusinessModel->getAllfilterdData($res['fltr'],$res['srt']);
+      
+		
         if( ! isset($res['fltr']['cityNear']))
             $ctyId = 0;
         else
@@ -26,10 +30,12 @@ class Business extends CI_Controller
         if( isset( $res['fltr']['categoryFind'] ) ) 
         $cat =  $res['fltr']['categoryFind'] ;
         
-        $data = array( "filters" => $filters ,
-          'catg_search'=> $cat ,  'city_search'=> $city,
-          "businesses" => $businesses , 'mainCats' => $mainCats);
+      //  $data = array( "filters" => $filters ,
+         // 'catg_search'=> $cat ,  'city_search'=> $city,
+        //  "businesses" => $businesses , 'mainCats' => $mainCats);
     	
+		
+		$data['selected'] = 'business';
     	$this->load->view('business/index' ,$data);	
     }
 
@@ -94,7 +100,7 @@ class Business extends CI_Controller
     public function business_get_categories($cat_par_id)
     {
         $catss= $this->BusinessModel->get_categories($cat_par_id);
-        echo json_encode($res);
+      //  echo json_encode($catss);
         $res = '';
         foreach ($catss as $row) {
             $res .= "<option value='$row->id'>$row->name</option>";
@@ -179,9 +185,15 @@ class Business extends CI_Controller
         
 		//die($cat);
 		
+	
+		
         $data = array( "filters" => $filters ,
           'catg_search'=> $cat ,  'city_search'=> $city,
           "businesses" => $businesses , 'mainCats' => $mainCats);
+		  $data['calltoaction'] =  $get_busi_calltoaction = $this->BusinessModel->calltoaction();
+		  	// echo "<pre>";
+		// print_r($data);
+		// exit;
         $this->load->view('business/filters-list' ,$data );
     }
     
@@ -198,25 +210,84 @@ class Business extends CI_Controller
     {
     	
     	$data = $this->BusinessModel->profile_data($businessId);	
-		echo "<pre>";
-		print_r($data);
-		exit;
+		// echo "<pre>";
+		// print_r($data);
+		// exit;
+		$data['busi_id'] = $businessId;
 	  	$this->load->view('business/profile',$data);	
-    }
+    } 
     public function business_editing($businessId = 0)
     {
         $data = $this->BusinessModel->edit($businessId);
+		$data['busi_id'] = $businessId;
+		// echo "<pre>";
+		// print_r($data);
+		// exit;
+		$data['selected'] = 'edit';
         $this->load->view('business/create', $data);
     }
     public function business_create()
     {
         $data = $this->BusinessModel->create();
-		
+		$data['selected'] = 'create';
         $this->load->view('business/create',$data);
     }
 	
 	
-	
+	public function add_review($value='')
+	{
+		 // $inputs=$this->input->post() ;
+		 // echo "<pre>";
+		 // print_r($inputs);
+		 // exit;
+// 		 
+		 
+		$id = $this->session->userdata('user_id');
+		if($_POST){
+		  $inputs=$this->input->post() ;
+		 		$this->form_validation->set_rules('rate',   'Rate','required|trim'); 
+                $this->form_validation->set_rules('review',  'Review','trim'); 
+            	$this->form_validation->set_rules('bus_id',  'No B','trim'); 
+          		 
+			   if ($this->form_validation->run() == true) {
+	               	$rate		    = $this->input->post('rate');
+					$review 	    = $this->input->post('review');
+					$bus_id 	    = $this->input->post('bus_id');
+				
+              		$add_review = $this->BusinessModel->add_review( $id , $rate  , $review ,$bus_id  );
+                    
+                    if ($add_review[0]) {
+				echo json_encode(array(1, 0));
+				return ;
+			} elseif(!$add_review[0] && $add_review[1]) {
+				echo json_encode(array(0, $add_review[1]));
+				return;
+			} else {
+				echo json_encode(array(0, 0));
+				return;
+			}
+                    
+             
+				}else{
+					$errors = array (
+                'rate' =>  form_error('rate', '<b style="color: red">', '</b>'),
+                'review' =>  form_error('review', '<b style="color: red">', '</b>'),
+                 'bus_id' =>  form_error('bus_id', '<b style="color: red">', '</b>'),
+				);		
+            	  
+				
+				
+                echo json_encode(array(0,  $errors ));// faild stay in
+            }
+					
+					
+				}
+		
+		
+	}
+
+
+				
 	
 	
     public function business_adding($stepNo)
@@ -258,6 +329,9 @@ class Business extends CI_Controller
                     return;
                 }else{ // submitted 
                      $section1 = $this->session->userdata('business_section2' ) ;
+					 // echo "<pre>";
+					 // print_r($section1);
+					 // exit;
                      $section2 = $this->session->userdata('business_section3' ) ;
                      $section3 = $this->session->userdata('business_submit' ) ;
 
@@ -272,6 +346,14 @@ class Business extends CI_Controller
 
                      $res =  $this->BusinessModel->add_new_business( $uid , $all_sections  , $is_edit ,$busi_id  );
                      //$errors = [];
+                     // if($is_edit){
+                    // $x = "step$current_step";
+					// if($x =='step4'){
+// 						
+// 						
+					// }
+// 						
+                     // }
                     echo json_encode(array(1,"step$current_step" ,$res ) ) ;
                     return;
                 }

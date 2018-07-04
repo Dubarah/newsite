@@ -1,5 +1,5 @@
 <!-- Header -->
-<?php $this->load->view('heroCitizen/common/header'); ?>
+<?php $this->load->view('main/second/header'); ?>
 <div class="wrapper grey-lighten-3">
   <img src="<?php echo base_url()?>asset/imgs/hero.svg" class="img-fluid intro-img">
   <div class="jumbotron jumbotron-fluid bg-white pad">

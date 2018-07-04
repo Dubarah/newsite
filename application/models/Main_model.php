@@ -118,13 +118,18 @@ class Main_model extends CI_Model {
         if ($passed) {
             $complete = $user->row()->city ? 1 : 0;
             if (!$complete) {
+            	$logged = $user->row()->logged == 1 ? 0 : 1 ;
+				$this->session->set_userdata('first_logged', $logged);
                 $this->session->set_userdata('not_completed', 1);
 				$this->session->set_userdata('user_id', $user->row()->id);
             	$this->session->set_userdata('username', $user->row()->username);
 				
 				redirect(base_url()."my_profile");
             }
-           
+           	$logged = $user->row()->logged== 1 ? 0 : 1 ;
+			
+			 $this->session->set_userdata('first_logged', $logged);
+			
             $this->session->set_userdata('user_id', $user->row()->id);
             $this->session->set_userdata('username', $user->row()->username);
             return 'passed';

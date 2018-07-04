@@ -96,6 +96,7 @@ $lang['phone_span'] 				=  'The phone number will be shown when the candidate pr
 $lang['done_dubatah'] 				=  'Your post has successfully been submitted for approval <br/> We will review it and post it within 24 hours..';
 $lang['thank_you'] 			=  'Thank You';
 $lang['lastname'] 			=  'Last name';
+
 $lang['profile'] 				=  'My Profile';
 $lang['my_information'] 		=  'My Information';
 $lang['fail'] 					=  'Fail';
@@ -601,6 +602,12 @@ $lang['maherkalash'] = "<h3>Maher Kalash</h3> <br/> IT team leader and maintenan
 $lang['pass_error'] = 'The password that you have entered is incorrect. <a href="http://localhost/achievement/forgot_password"> Forgotten password?</a>';
 $lang['email_error'] = 'The email address that you have entered doesn not match any account. <a href="http://localhost/achievement/signup">  Sign up for an account.?</a>';
 
+$lang['business-weblink'] = "weblink";
+$lang['business-calltype'] = "calltype";
+
+$lang['edit_succ_dubarah'] = "Dubarah edited successfully";
+
+$lang['business-about'] = "about";
 
 
 $lang[''] = "";

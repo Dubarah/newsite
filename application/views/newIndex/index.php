@@ -1,4 +1,4 @@
-  <?php $this->load->view('newIndex/header')?>
+  <?php $this->load->view('main/header')?>
   <!--Start of Zendesk Chat Script-->
 <script type="text/javascript">
 window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
@@ -23,8 +23,8 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
  
 <div class="container">
 	
-	<div class="row" style="margin-top: 50px ;">
-    <div class="col-lg-6">
+	<div class="row " style="margin-top: 50px ;">
+    <div class="col-lg-6 justify-content-center">
       <div class="media">
         <img class="mr-3 rounded-circle" width="100" src="<?php echo base_url()?>asset/imgs/dubarji.svg" style="position: relative;top: -10px;" >
         <div class="media-body mar-top ">
@@ -32,7 +32,7 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
         </div>
       </div>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-6 justify-content-center">
       <div class="media">
         <img class="mr-3" src="<?php echo base_url()?>asset/imgs/world.svg"  width="100">
         <div class="media-body">
@@ -433,11 +433,11 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
                         <div class="col-lg-3">
                             <div class="card">
                             	<a href="<?php echo base_url().'business-profile/'. $value->id ?>">
-                                <img class="card-img-top" src="<?php echo base_url().$value->cover?>" alt="Card image cap">
+                                <img class="card-img-top b-img" src="<?php echo base_url().$value->cover?>" alt="Card image cap">
                               </a>
                                 <div class="card-body">
                                 	<a href="<?php echo base_url().'business-profile/'. $value->id ?>">
-                                    <h4 class="card-title"><?php echo $value->name ?></h4>
+                                    <h5 class="card-title"><?php echo $value->name ?></h5>
                                     </a>
                                     <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?>asset/imgs/star.svg" /></i>
                                     <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?>asset/imgs/star.svg" /></i>
@@ -446,7 +446,7 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
                                     <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?>asset/imgs/nostae.svg" /></i>
 									
                                     <p class="text-muted"><?php $i = 0; foreach ($bus_cat[$value->id] as $bus_cat0) { 
-                                  if($i == 2){
+                                  if($i == 1){
                                       echo "..... ";
                                       break;
 								  }
@@ -481,11 +481,11 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
                         <div class="col-lg-3">
                             <div class="card">
                             	<a href="<?php echo base_url().'business-profile/'. $value->id ?>">
-                                <img class="card-img-top" src="<?php echo base_url().$value->cover?>" alt="Card image cap">
+                                <img class="card-img-top b-img" src="<?php echo base_url().$value->cover?>" alt="Card image cap">
                                 </a>
                                 <div class="card-body">
                                     <a href="<?php echo base_url().'business-profile/'. $value->id ?>">
-                                    <h4 class="card-title"><?php echo $value->name ?></h4>
+                                    <h5 class="card-title"><?php echo $value->name ?></h5>
                                     </a>
                                     <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?>asset/imgs/star.svg" /></i>
                                     <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?>asset/imgs/star.svg" /></i>
@@ -495,7 +495,7 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
 								
                                     <p class="text-muted">
                                     	<?php $i = 0; foreach ($bus_cat[$value->id] as $buscat1) { 
-                                  if($i == 2){
+                                  if($i == 1){
                                       echo "..... ";
                                       break;
 								  }
@@ -528,11 +528,11 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
                         <div class="col-lg-3">
                             <div class="card">
                             	<a href="<?php echo base_url().'business-profile/'. $value->id ?>">
-                                <img class="card-img-top" src="<?php echo base_url().$value->cover?>" alt="Card image cap">
+                                <img class="card-img-top b-img" src="<?php echo base_url().$value->cover?>" alt="Card image cap">
                                 </a>
                                 <div class="card-body">
                                 		<a href="<?php echo base_url().'business-profile/'. $value->id ?>">
-                                    <h6 class="card-title"><?php echo $value->name ?></h6>
+                                    <h5 class="card-title"><?php echo $value->name ?></h5>
                                     </a>
                                     <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?>asset/imgs/star.svg" /></i>
                                     <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?>asset/imgs/star.svg" /></i>
@@ -541,7 +541,7 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
                                     <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?>asset/imgs/nostae.svg" /></i>
 									
                                      <p class="text-muted"><?php $i = 0; foreach ($bus_cat[$value->id] as $bus_cat) { 
-                                  if($i == 2){
+                                  if($i == 1){
                                       echo "..... ";
                                       break;
 								  }
@@ -575,7 +575,7 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
                         <div class="col-lg-3">
                             <div class="card">
                             	<a href="<?php echo base_url().'business-profile/'. $value->id ?>">
-                                <img class="card-img-top" src="<?php echo base_url().$value->cover?>" alt="Card image cap">
+                                <img class="card-img-top b-img" src="<?php echo base_url().$value->cover?>" alt="Card image cap">
                                </a>
                                 <div class="card-body">
                                 	<a href="<?php echo base_url().'business-profile/'. $value->id ?>">
@@ -588,7 +588,7 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
                                     <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?>asset/imgs/nostae.svg" /></i>
 								
                                      <p class="text-muted"><?php $i = 0; foreach ($bus_cat[$value->id] as $bus_cat) { 
-                                  if($i == 2){
+                                  if($i == 1){
                                       echo "..... ";
                                       break;
 								  }
@@ -619,7 +619,7 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
       </div>
       
  <div class="text-center mar-top" style="margin: 50px 0;">
-        <h6><a><u>See More business</u></a></h6>
+        <h6><a href="<?php echo base_url() ?>business"><u>See More business</u></a></h6>
     </div>
 </div>
 

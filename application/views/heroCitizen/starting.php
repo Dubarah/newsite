@@ -4,7 +4,7 @@
 // echo "<pre>";
  // print_r($achs);
 // exit; ?>
-<?php $this->load->view('heroCitizen/common/header'); ?>
+<?php $this->load->view('main/second/header'); ?>
 <div class="wrapper" style="background-color: #f2f2f2;">
 <!-- Cover Photo -->
 <img src="<?php echo base_url()?>asset/imgs/headerCitizen.svg" class="img-fluid intro-img">

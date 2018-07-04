@@ -176,19 +176,19 @@
                         # code... WTF
                      break;
 				}}
-                $sublink = isset($busin_data[0])? $busin_data[0]->call_action_weblink : '';
+                $sublink =  isset($busin_data[0])? $busin_data[0]->call_action_weblink : '';
             ?>
             <div class="mar-top ">
                 <div class="input-group col-md-12">
                     <div class="col-md-6">
-                        <label><input type="radio" name="calltype" value="1" <?php isset($sub[1-1])? $sub[1-1] : '' ?>  />
+                        <label><input type="radio" name="calltype" value="1" <?php echo isset($sub[1-1])? $sub[1-1] : '' ?>  />
                         Make your reservation today! <br/>
                         <small> Contact us </small>
                         </label>
                     </div>
 
                     <div class="col-md-6">
-                        <label><input type="radio" name="calltype" value="2" <?php isset($sub[2-1])? $sub[2-1] : '' ?>    />
+                        <label><input type="radio" name="calltype" value="2" <?php echo isset($sub[2-1])? $sub[2-1] : '' ?>    />
                         Book an Appointment today! <br/>
                         <small>Book Now </small>
                         </label>
@@ -197,28 +197,33 @@
                 <div class="col-md-12">
                      <div class="input-group">
                         <div class="col-md-6">
-                            <label><input type="radio" name="calltype" value="3" <?php isset($sub[3-1])? $sub[3-1] : '' ?>   />
+                            <label><input type="radio" name="calltype" value="3" <?php echo isset($sub[3-1])? $sub[3-1] : '' ?>   />
                             Get a Quick Quote Now! <br/>
                             <small> Get Quote </small>
                             </label>
                         </div>
                         <div class="col-md-6">
-                        <label><input type="radio" name="calltype" value="4" <?php isset($sub[4-1])? $sub[4-1] : '' ?>  />
+                        <label><input type="radio" name="calltype" value="4" <?php echo isset($sub[4-1])? $sub[4-1] : '' ?>  />
                         Sign up today! <br/>
                         <small> Sign Up </small>
                         </label>
                         </div>
                     </div>
                         <div class="col-md-6">
-                            <label><input type="radio" name="calltype" value="5" <?php isset($sub[5-1])? $sub[5-1] : '' ?> />
+                            <label><input type="radio" name="calltype" value="5" <?php echo isset($sub[5-1])? $sub[5-1] : '' ?> />
                             Get to know more about us today! <br/>
                             <small>View Website </small>
                             </label><br/>
                         </div>
+                        
+                         <div> <span id='v-calltype'  class="lst_spn_val"></span></div>
                         <div class="col-md-12">
-                            <input type="text" name="weblink" class="form-control "  value="<?php isset($sublink)? $sublink : '' ?>" 
+                            <input type="text" name="weblink" class="form-control "  value="<?php echo isset($sublink)? $sublink : '' ?>" 
                             placeholder="https://www.yourbusinessdomain.com/">
                         </div>
+                                <div> <span id='v-weblink'  class="lst_spn_val"></span></div>
+                                
+
                 </div>
             </div>
     </div>   

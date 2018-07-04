@@ -1,8 +1,8 @@
-<?php 
-// echo "<pre>";
-// print_r($busin_imgs);
-// exit;
-$this->load->view('/business/common/header'); ?>
+<?php $this->load->view('main/second/header'); ?>
+
+
+
+
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
     <link rel="stylesheet" href="<?php echo base_url()?>asset/css/gallery-grid.css">
        <style>
@@ -192,22 +192,125 @@ $this->load->view('/business/common/header'); ?>
         }
 
         .realPrice {color : #45FF00 !important ;}
+        
+       /* Rate*/
+      
+.rating {
+  background: #fff;
+}
+
+input[type="radio"] {
+  position: fixed;
+  top: 0;
+  right: 100%;
+}
+
+label {
+     font-size: 1.1em;
+  padding: 0.2em;
+  
+      padding-bottom: 0.1em;
+    padding-top: 0.1em;
+  margin: 0;
+  float: left;
+  cursor: pointer;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+      border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+input[type="radio"]:checked ~ input + label {
+  background: none;
+  color: #aaa;
+}
+
+input + label {
+  background: #E85100;
+  color: #ffffff;
+  margin: 0 0 1em 0;
+  margin-right: 2px;
+}
+
+input + label:first-of-type {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+input:checked + label {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+hr {
+  clear: both;
+  border: 0;
+  border-top: 2px solid #999;
+  margin: 2em 0;
+}
+/*upload */
+
+
+.upload-button-wrapper{
+  position:relative;
+  overflow:hidden;
+	vertical-align:middle;
+  .upload-button{
+    position:absolute;
+    overflow:hidden;
+    width:25px;
+    outline:none;
+  }
+  .upload-label{
+    position:relative;
+    padding:10px;
+    background-color:olive;
+    color:#ffffff;
+    border:2px solid darken(olive,4);
+    border-radius:5px;
+    cursor:pointer;
+  }
+  // focus/hover
+  .upload-label:hover,
+  .upload-button:focus + .upload-label{
+    background-color: darken(olive,4);
+    border-color: darken(olive,8);
+  }
+  .upload-label:active,
+  .upload-button:active + .upload-label{
+    background-color: darken(olive,8);
+  }
+  
+}
+
+input[type=file] { display:none }
+input[type=radio] { display:none }
+
+.upload-filename{
+  color:darken(olive,8);
+  vertical-align:middle;
+}
 
     </style>
-<?php $this->load->view('/business/common/navbar'); ?>
+    
+<?php //$this->load->view('/business/common/navbar'); ?>
     <div class="intro duOrange">
         <div style="text-align: center">
             <div style="margin: 2rem 0">
                 <img src="<?php echo base_url() ?>asset/imgs/DubarahLogoWhite.svg" class="img-fluid" style="max-width: 12rem ; padding: 4px"><span class="text-white font-weight-bold" style="font-size: 2rem; vertical-align: bottom;"> Business </span>
             </div>
-            <div class="card" style="display: inline-block" id="searchBar">
+         <div class="card" style="display: inline-block" id="searchBar">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-5">
                             <div class="form-group row" style="margin-bottom: 0">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label font-weight-bold duBlackText">Find</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" placeholder="Graphic Designer , Web Designer , IT , Doctor" style="border: none">
+                                    <input id="find_inp" value="<?php if( isset ($catg_search )  ) echo $catg_search ;?>" class="form-control" placeholder="Graphic Designer , Web Designer , IT , Doctor" style="border: none">
                                 </div>
                             </div>
                         </div>
@@ -215,24 +318,63 @@ $this->load->view('/business/common/header'); ?>
                             <div class="form-group row" style="margin-bottom: 0">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label font-weight-bold duBlackText">Near</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" placeholder="Toronto , Damascus , ON" style="border: none">
+                                    <input class="form-control" id="city_inp"  value="<?php if( isset ( $city_search[0]->name )  ) echo  $city_search[0]->name ;?>"
+                                     placeholder="Toronto , Damascus , ON" style="border: none">
                                 </div>
                             </div>
+                       
+                        <div id="city_res_all" class="col-md-12 text-left " style="    margin-left: 51px;">
+                     <div class="list-group offset-md-0" id="city_res">
+                    </div>
+                </div>
                         </div>
                         <div class="col-lg-2">
-                            <button type="button" class="btn btn-light duOrangeText bg-white font-weight-bold" style="border : 1px solid #e85100">Go and Find</button>
+                            <button type="button" id="go_find" class="btn btn-light duOrangeText bg-white font-weight-bold" style="border : 1px solid #e85100">Go and Find</button>
                         </div>
                     </div>
+                     <div id="results" >
+               <div id="find_res" class="col-md-5 text-left   " >
+                     <div class="list-group offset-md-1">
+                        <?php //for ($i=0; $i < count($mainCats['MainCat']); $i++) {  $cat= $mainCats[$i] ;?>
+                        <?php if(isset($mainCats)) {foreach ( $mainCats  as $cat) { ?>
+                            <div  
+                             	class="list-group-item list-group-item-action">
+                                <strong> <i class="fa <?php echo $cat->icon ; ?>" aria-hidden="true"></i>
+                                  <span class="cat_name_cont"  ><?php echo $cat->name ; ?></span></strong>
+                            </div>
+                        <?php }} ?>
+                    </div>
+                </div>
+                <div id="find_get_res" class="col-md-5 text-left  ">
+                    <div class="list-group offset-md-1">
+                        <div class="lbl list-group-item  text-dark font-weight-bold"> 
+                        <i class="fa fa-diamond"></i>
+                        Business </div>
+                        <div id="find_res_b">
+                             <a href="#" class="list-group-item list-group-item-action">
+                        No Business Founded. </a></div>
+                        <div class="lbl list-group-item text-dark font-weight-bold">
+                        <i class="fa fa-cube"></i>
+                        Main Category</div>
+                        <div id="find_res_c">
+                        <a href="#" class="list-group-item list-group-item-action">
+                        No Main Category Founded.</a></div>
+                        <div class="lbl list-group-item text-dark font-weight-bold">
+                        <i class="fa fa-cubes"></i>
+                        Category</div>
+                        <div id="find_res_sc">
+                        <a href="#" class="list-group-item list-group-item-action">
+                        No Category Founded. </a>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
                 </div>
             </div>
             <div class="container">
                 <div class="row mar-top ">
-                    <div class="col-lg-9">
-                        <p class="text-left text-white">Browsing<span class="font-weight-bold"> Toronto, ON, Canada </span> Businesses</p>
-                    </div>
-                    <div class="col-lg-3">
-                        <p class="text-right text-white">Showing 1-10 of 11160</p>
-                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -244,12 +386,12 @@ $this->load->view('/business/common/header'); ?>
                 <div class="col">
                     <h3 class="font-weight-bold"> <?php echo $busin_data->name ?><span style="margin: 8px 10px;"> <i class="fa fa-check-circle red-text" aria-hidden="true"></i> </span> <span style="font-size: 16px; font-weight: normal !important;">verified</span></h3>
                     <div style="display: block ; margin: 20px 0;">
-                        <i class="fa fa-star rated" aria-hidden="true"></i>
-                        <i class="fa fa-star rated" aria-hidden="true"></i>
-                        <i class="fa fa-star rated" aria-hidden="true"></i>
-                        <i class="fa fa-star unrated" aria-hidden="true"></i>
-                        <i class="fa fa-star unrated" aria-hidden="true"></i>
-                        <span class="grey-text small">10 reviews</span>
+                       <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?>asset/imgs/star.svg" /></i>
+                                    <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?><?php echo $busin_rate >=2? 'asset/imgs/star.svg' : 'asset/imgs/nostae.svg' ?>" /></i>
+                                      <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?><?php echo $busin_rate >=3? 'asset/imgs/star.svg' : 'asset/imgs/nostae.svg' ?>" /></i>
+                                      <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?><?php echo $busin_rate >= 4? 'asset/imgs/star.svg' : 'asset/imgs/nostae.svg' ?>" /></i>
+                                     <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?><?php echo $busin_rate == 5? 'asset/imgs/star.svg' : 'asset/imgs/nostae.svg' ?>" /></i>
+                        <span class="grey-text small"><?php echo $rate_count ?> reviews</span>
                     </div>
                     <div style="display: block ;">
                     	<?php if ($busin_data->price == 1) {
@@ -272,12 +414,17 @@ $this->load->view('/business/common/header'); ?>
 
                 </div>
                 <div class="col">
-                    <ul class="bussinessUsOp float-right">
-                        <li>+Add Photo</li> <!-- links or what else :# -->
-                        <li>Add Bookmark</li>
-                        <li>Share</li>
-                        <li>Report</li>
-                    </ul>
+                   <ul class="bussinessUsOp float-right">
+                        <!-- <li>+Add Photo</li> --> <!-- links or what else :# -->
+                        <!-- <li>Add Bookmark</li>
+                        <li>Share</li> -->
+                        <?php
+                        	
+                         if ($now_user_id == $busin_data->user_id): ?>
+                             <li><a href="<?php echo base_url().'business-edit/'.$busi_id?>">Edit</a></li>
+                        <?php endif ?>
+                       
+                    </ul> 
                     <button type="button" class="btn btn-light duOrange text-white float-right no-border" data-toggle="modal" data-target="#reviewModal">Write Review</button>
                 </div>
             </div>
@@ -286,19 +433,26 @@ $this->load->view('/business/common/header'); ?>
 
     <div class="container">
         <div class="upBusinnessDetails" style="position: relative">
-            <div class="row" style="max-height: 24rem !important; overflow: hidden; position: absolute ; top: -5rem;">
+            <div class="row" style="max-height: 26rem !important; overflow: hidden; position: absolute ; top: -5rem;">
             <div class="col-lg-5">
-                <div class="card" style="max-height: 24rem;">
+                <div class="card" >
                     <div class="card-body" style="padding: 1rem !important;">
                         <div class="media">
                             <img class="d-flex mr-3" src="<?php echo base_url().$busin_data->logo?>" width="100" height="100">
                             <div class="media-body">
-                                <span class="flag flag-<?php echo strtolower($countries->country_arabic_name) ?> flag-1x mar-right"></span><span class="user-country"><?php echo $countries->country_english_name .','.$countries->city_english_name?></span>
-                                <button type="button" class="btn btn-outline-light duGreen mar-top">Open Now</button>
-                                <p class="small">Today 10:00 am - 6:00 pm</p>
-                            </div>
+                                <span class="flag flag-<?php echo strtolower($countries->country_arabic_name) ?> flag-1x mar-right"></span><span class="user-country">
+                                	<?php echo $countries->country_english_name .','.$countries->city_english_name?></span>
+                               
+                                <button type="button" class="btn btn-outline-light <?php $date = date('D'); echo isset($busin_datetimes["$date"])? 'duGreen'  : 'duOrange' ;    ?> mar-top">
+                                	<?php $date = date('D'); echo isset($busin_datetimes["$date"])? 'Open Now'  : 'Closed' ;    ?></button>
+                             	
+                             	
+                                <p class="small"><?php $date = date('D'); echo isset($busin_datetimes["$date"])? $busin_datetimes["$date"]->timefrom.'-'.$busin_datetimes["$date"]->timeto  : 'Closed Now' ;    ?></p>
+                         
+                         
+                           </div>
                         </div>
-                        <h5 class="font-weight-bold mar-top">705-890 Mt Pleasant Rd, Toronto,ON M4P 2L4</h5>
+                        <h5 class="font-weight-bold mar-top"><?php echo $busin_data->address.' , '.$busin_data->province.' , '.$busin_data->address_office ?></h5>
                         <h6><?php echo $busin_data->webaddress ?></h6>
                         <h6><?php echo $busin_data->work_email ?></h6>
                         <h6 style="margin-top: 20px">Cell. <?php echo $busin_data->mobile_phone ?>  </h6>
@@ -306,11 +460,10 @@ $this->load->view('/business/common/header'); ?>
                         <h6>Fax. <?php echo $busin_data->work_phone ?>  </h6>
                         <ul class="businessSocialIcon">
                             <li><a href="<?php echo $busin_data->facebook ?> "><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                            <li><a href="<?php echo $busin_data->facebook ?> "><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                            <li><a href="<?php echo $busin_data->facebook ?> "><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                            <li><a href="<?php echo $busin_data->facebook ?> "><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                            <li><a href="<?php echo $busin_data->facebook ?> "><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                            <li><a href="<?php echo $busin_data->facebook ?> "><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                            <li><a href="<?php echo $busin_data->twitter ?> "><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="<?php echo $busin_data->linkedin ?> "><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                            <li><a href="<?php echo $busin_data->pinterest ?> "><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                         
 
                         </ul>
                     </div>
@@ -398,23 +551,56 @@ $this->load->view('/business/common/header'); ?>
                     <div class="card-body grey-lighten-3">
                         <div class="row">
                             <div class="col-lg-9">
-                                <h4 class="duOrangeText" style="margin-top: 5px">Get a Quick Quote Now!</h4>
+                          <?php 
+                          
+                          if($busin_data->call_action_btn == 1):
+							  
+							  $text = ' Make your reservation today!';
+							  $butn = ' Contact us ';
+							  
+						  
+						  elseif($busin_data->call_action_btn == 2):
+							    $text = 'Book an Appointment today!';
+							  $butn = 'Book Now  ';
+							  
+						    elseif($busin_data->call_action_btn == 3):
+								
+								    $text = 'Get a Quick Quote Now!';
+							  $butn = 'Get Quote';
+								
+								  elseif($busin_data->call_action_btn == 4):
+									  
+								    $text = 'Sign up today! ';
+							  $butn = 'Sign Up';
+									    elseif($busin_data->call_action_btn == 5):
+											  $text = ' Get to know more about us today! ';
+							  $butn = 'View Website ';
+											
+											endif;
+						  
+						   ?>  	
+                                <h4 class="duOrangeText" style="margin-top: 5px"><?php echo $text ?></h4>
                             </div>
                             <div class="col-lg-3">
-                                <button type="button" class="btn btn-light duOrange text-white no-border font-weight-bold">Get Quote</button>
+                                <a target="_blank"   href="<?php echo $busin_data->call_action_weblink ?>" class="btn btn-light duOrange text-white no-border font-weight-bold"><?php echo $butn ?></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <h3 class="font-weight-bold" style="margin: 1.5rem 0">FAQ</h3>
+            
                 <div class="faq1">
+            
+             	<?php foreach ($busin_faq as  $value): ?>
+					 
+				
                     <!-- Question Section -->
                     <div class="row">
                         <div class="col-lg-2">
                             <h6 class="font-weight-bold">Question :</h6>
                         </div>
                         <div class="col-lg-10">
-                            <p>Ex. What the special about your business</p>
+                            <p><?php echo $value->ask ?></p>
                         </div>
                     </div>
                     <!-- answer Section -->
@@ -423,59 +609,53 @@ $this->load->view('/business/common/header'); ?>
                             <h6 class="font-weight-bold duGreenText">Answer :</h6>
                         </div>
                         <div class="col-lg-10">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                            <p><?php echo $value->answer ?></p>
                         </div>
                     </div>
-                </div>
+               
+                 <?php endforeach ?>
+                 </div>
                 <div class="divider" style="margin: 1.5rem 0;"></div>
                 <h3 class="font-weight-bold" style="margin: 1.5rem 0">Reviews</h3>
-                <div class="row">
+               
+               <?php foreach ($busin_reviews as  $value): ?>
+                   <div class="row">
                     <div class="col-lg-4">
                         <div class="media">
-                            <img class="d-flex mr-3" src="imgs/dubarah-footer-img.jpg" width="50" height="50">
+                            <img class="d-flex mr-3" src="<?php echo base_url().'uploads/users/'.$value->photo ?>" width="50" height="50">
                             <div class="media-body">
-                                <h5 class="mt-0">Adnan Diab</h5>
-                                <p class="text-muted small">Canada,Toronto</p>
+                                <h5 class="mt-0"><?php echo $value->username .' '.$value->lastname ?></h5>
+                                <!-- <p class="text-muted small">Canada,Toronto</p> -->
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-8">
                         <div style="display: block">
-                            <i class="fa fa-star rated" aria-hidden="true"></i>
-                            <i class="fa fa-star rated" aria-hidden="true"></i>
-                            <i class="fa fa-star rated" aria-hidden="true"></i>
-                            <i class="fa fa-star unrated" aria-hidden="true"></i>
-                            <i class="fa fa-star unrated" aria-hidden="true"></i>
-                            <span class="grey-text small">9/14/2017</span>
-                            <a href="#" class="grey-text" style="text-decoration: underline ; margin: 0 1rem">Report Review</a>
-                            <p class="text-muted small" style="margin-top: 1rem">Went here a few nights ago with family and was treated to a truly delicious dinner. We started off with the Himalayan Momo - really tasty dumplings especially when dipped in the sauce along with Samosas and the Mismas Pakauda - a spinach dish with onion and spices. All served</p>
+                        	
+                        		
+                        	
+                          			<i  aria-hidden="true"><img width="15" src="<?php echo base_url()?>asset/imgs/star.svg" /></i>
+                                    <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?><?php echo $value->rate >=2? 'asset/imgs/star.svg' : 'asset/imgs/nostae.svg' ?>" /></i>
+                                      <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?><?php echo $value->rate >=3? 'asset/imgs/star.svg' : 'asset/imgs/nostae.svg' ?>" /></i>
+                                      <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?><?php echo $value->rate >= 4? 'asset/imgs/star.svg' : 'asset/imgs/nostae.svg' ?>" /></i>
+                                     <i  aria-hidden="true"><img width="15" src="<?php echo base_url()?><?php echo $value->rate == 5? 'asset/imgs/star.svg' : 'asset/imgs/nostae.svg' ?>" /></i>
+                                    
+                                    
+                                    
+                                    
+                            <span class="grey-text small"><?php echo date('Y-m-d h:i a' , strtotime($value->created_date))?></span>
+                            <!-- <a href="#" class="grey-text" style="text-decoration: underline ; margin: 0 1rem">Report Review</a> -->
+                            <p class="text-muted small" style="margin-top: 1rem"><?php echo $value->review?></p>
                         </div>
                     </div>
                 </div>
+                
+                
+                
                 <div class="divider"></div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="media">
-                            <img class="d-flex mr-3" src="imgs/dubarah-footer-img.jpg" width="50" height="50">
-                            <div class="media-body">
-                                <h5 class="mt-0">Adnan Diab</h5>
-                                <p class="text-muted small">Canada,Toronto</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-8">
-                        <div style="display: block">
-                            <i class="fa fa-star rated" aria-hidden="true"></i>
-                            <i class="fa fa-star rated" aria-hidden="true"></i>
-                            <i class="fa fa-star rated" aria-hidden="true"></i>
-                            <i class="fa fa-star unrated" aria-hidden="true"></i>
-                            <i class="fa fa-star unrated" aria-hidden="true"></i>
-                            <span class="grey-text small">9/14/2017</span>
-                            <a href="#" class="grey-text" style="text-decoration: underline ; margin: 0 1rem">Report Review</a>
-                            <p class="text-muted small" style="margin-top: 1rem">Went here a few nights ago with family and was treated to a truly delicious dinner. We started off with the Himalayan Momo - really tasty dumplings especially when dipped in the sauce along with Samosas and the Mismas Pakauda - a spinach dish with onion and spices. All served</p>
-                        </div>
-                    </div>
-                </div>
+               <?php endforeach ?>
+                
+    
             </div>
             <div class="col-lg-4">
                 <h3 class="font-weight-bold">Hours</h3>
@@ -483,22 +663,29 @@ $this->load->view('/business/common/header'); ?>
                     <div class="card-body grey-lighten-3" style="padding: 1rem 2rem !important;">
                         <div class="row">
                             <div class="col-lg-4">
+                            	
+                            	  <p class="text-uppercase" style="margin: 0"><span class="font-weight-bold" style="margin-right: 1rem">sun</span></p>
+									
                                 <p class="text-uppercase" style="margin: 0"><span class="font-weight-bold" style="margin-right: 1rem">mon</span></p>
                                 <p class="text-uppercase" style="margin: 0"><span class="font-weight-bold" style="margin-right: 1rem">tue</span></p>
                                 <p class="text-uppercase" style="margin: 0"><span class="font-weight-bold" style="margin-right: 1rem">wed</span></p>
                                 <p class="text-uppercase" style="margin: 0"><span class="font-weight-bold" style="margin-right: 1rem">thu</span></p>
                                 <p class="text-uppercase" style="margin: 0"><span class="font-weight-bold" style="margin-right: 1rem">fri</span></p>
                                 <p class="text-uppercase" style="margin: 0"><span class="font-weight-bold" style="margin-right: 1rem">sat</span></p>
-                                <p class="text-uppercase" style="margin: 0"><span class="font-weight-bold" style="margin-right: 1rem">sun</span></p>
+                              
+								
+                                
                             </div>
                             <div class="col-lg-8">
-                                <p class="text-uppercase" style="margin: 0">closed</p>
-                                <p class="text-uppercase" style="margin: 0">5:00 PM - 10:00 PM</p>
-                                <p class="text-uppercase" style="margin: 0">5:00 PM - 10:00 PM</p>
-                                <p class="text-uppercase" style="margin: 0">5:00 PM - 10:00 PM</p>
-                                <p class="text-uppercase" style="margin: 0">5:00 PM - 10:00 PM</p>
-                                <p class="text-uppercase" style="margin: 0">5:00 PM - 10:00 PM</p>
-                                <p class="text-uppercase" style="margin: 0">5:00 PM - 10:00 PM <span class="red-text">CLOSED NOW</span></p>
+                            	
+                                <p class="text-uppercase" style="margin: 0">	<?php echo isset($busin_datetimes['Sun'])? $busin_datetimes['Sun']->timefrom.'-'.$busin_datetimes['Sun']->timeto  : 'Closed' ;    ?></p>
+                                <p class="text-uppercase" style="margin: 0">	<?php echo isset($busin_datetimes['Mon'])? $busin_datetimes['Mon']->timefrom.'-'.$busin_datetimes['Mon']->timeto  : 'Closed' ;    ?></p>
+                                <p class="text-uppercase" style="margin: 0">	<?php echo isset($busin_datetimes['Tue'])? $busin_datetimes['Tue']->timefrom.'-'.$busin_datetimes['Tue']->timeto  : 'Closed' ;    ?></p>
+                                <p class="text-uppercase" style="margin: 0">	<?php echo isset($busin_datetimes['Wed'])? $busin_datetimes['Wed']->timefrom.'-'.$busin_datetimes['Wed']->timeto  : 'Closed' ;    ?></p>
+                                <p class="text-uppercase" style="margin: 0">	<?php echo isset($busin_datetimes['Thu'])? $busin_datetimes['Thu']->timefrom.'-'.$busin_datetimes['Thu']->timeto  : 'Closed' ;    ?></p>
+                                <p class="text-uppercase" style="margin: 0">	<?php echo isset($busin_datetimes['Fri'])? $busin_datetimes['Fri']->timefrom.'-'.$busin_datetimes['Fri']->timeto  : 'Closed' ;    ?></p>
+                                <p class="text-uppercase" style="margin: 0">	<?php echo isset($busin_datetimes['Sat'])? $busin_datetimes['Sat']->timefrom.'-'.$busin_datetimes['Sat']->timeto  : 'Closed' ;    ?></p>
+                                <!-- <p class="text-uppercase" style="margin: 0">5:00 PM - 10:00 PM <span class="red-text">CLOSED NOW</span></p> -->
                             </div>
                         </div>
                     </div>
@@ -506,61 +693,91 @@ $this->load->view('/business/common/header'); ?>
 
                 <h3 class="font-weight-bold" style="margin: 1.5rem 0">BUSINESS FEATURES</h3>
                 <div class="card">
+                	
+                	<?php if ($busin_data->price == 2 || $busin_data->price == 3 || $busin_data->price ==  4 || $busin_data->price == 5) 
+                		{
+                		$se =  'realPrice'; }
+                	else{
+                		$se =  'grey-lighten-2-text';} ?> 
+                		
+                		<?php if ($busin_data->price == 3 || $busin_data->price ==  4 || $busin_data->price == 5) 
+                		{
+                		$se3 =  'realPrice'; }
+                	else{
+                		$se3 =  'grey-lighten-2-text';} ?> 
+                			<?php if ( $busin_data->price ==  4 || $busin_data->price == 5) 
+                		{
+                		$se4 =  'realPrice'; }
+                	else{
+                		$se4 =  'grey-lighten-2-text';
+					} ?> 
+					
+						<?php if ($busin_data->price == 5) 
+                		{
+                		$se5 =  'realPrice'; }
+                	else{
+                		$se5 =  'grey-lighten-2-text';} ?> 
+                		
+                	
                     <div class="card-body grey-lighten-3" style="padding: 1rem 2rem !important;">
                         <p class="font-weight-bold no-mar" style="display: inline-block ; margin-right: 1rem !important;">Price</p>
                         <i class="fa fa-usd realPrice" aria-hidden="true"></i>
-                        <i class="fa fa-usd realPrice" aria-hidden="true"></i>
-                        <i class="fa fa-usd grey-lighten-2-text" aria-hidden="true"></i>
-                        <i class="fa fa-usd grey-lighten-2-text" aria-hidden="true"></i>
+                        <i class="fa fa-usd <?php echo $se; ?> " aria-hidden="true"></i>
+                        <i class="fa fa-usd <?php echo $se3; ?>" aria-hidden="true"></i>
+                        <i class="fa fa-usd <?php echo $se4; ?>" aria-hidden="true"></i>
+                         <i class="fa fa-usd <?php echo $se5; ?>" aria-hidden="true"></i>
                     </div>
                 </div>
 
                 <div class="card " style="margin-top: 5px;">
-                    <div class="card-body grey-lighten-3" style="padding: 1rem 2rem !important;">
+                    <div class="card-body  grey-lighten-3" style="padding: 1rem 2rem !important;">
                         <p class="font-weight-bold no-mar" style="display: inline-block ;">General Features</p>
                         <div class="row">
-                            <div class="col">
-                                <p class="no-mar small">Wheelchair Accessible</p>
-                                <p class="no-mar small">Kids Friendly</p>
-                            </div>
-                            <div class="col">
-                                <p class="no-mar small">Dogs Allowed</p>
-                                <p class="no-mar small">Waiter Service</p>
+                        	
+                        	 <div class="col">
+                        	<?php foreach ($busin_genfeat as $value): ?>
+								
+						<p class="no-mar small"><?php echo $value->name ?></p>
+						
+						
+							<?php endforeach ?>
+                           
+                      
                             </div>
                         </div>
                     </div>
                 </div>
-
+				
                 <div class="card " style="margin-top: 5px;">
                     <div class="card-body grey-lighten-3" style="padding: 1rem 2rem !important;">
                         <p class="font-weight-bold no-mar" style="display: inline-block ; margin-right: 1rem !important;">Parking</p>
-                        <p class="no-mar" style="display: inline-block ;">Street</p>
+                        <p class="no-mar" style="display: inline-block ;"><?php echo  $busin_data->parking == 0? 'No' : $busin_data->parking ?></p>
                     </div>
                 </div>
 
                 <div class="card" style="margin-top: 5px;">
                     <div class="card-body grey-lighten-3" style="padding: 1rem 2rem !important;">
                         <p class="font-weight-bold no-mar" style="display: inline-block ; margin-right: 1rem !important;">Smoking</p>
-                        <p class="no-mar" style="display: inline-block ;">Outdoor Area / Patio Only</p>
+                        <p class="no-mar" style="display: inline-block ;"><?php echo  $busin_data->smoking == 0? 'No' : $busin_data->smoking ?></p>
                     </div>
                 </div>
 
                 <div class="card" style="margin-top: 5px;">
                     <div class="card-body grey-lighten-3" style="padding: 1rem 2rem !important;">
                         <p class="font-weight-bold no-mar" style="display: inline-block ; margin-right: 1rem !important;">Alcohol</p>
-                        <p class="no-mar" style="display: inline-block ;">Full Bar</p>
+                        <p class="no-mar" style="display: inline-block ;"><?php echo  $busin_data->alcohol == 0? 'No' : $busin_data->alcohol ?></p>
                     </div>
                 </div>
 
                 <div class="card " style="margin-top: 5px;">
                     <div class="card-body grey-lighten-3" style="padding: 1rem 2rem !important;">
                         <p class="font-weight-bold no-mar" style="display: inline-block ; margin-right: 1rem !important;">Music</p>
-                        <p class="no-mar" style="display: inline-block ;">Juke Box</p>
+                        <p class="no-mar" style="display: inline-block ;"><?php echo  $busin_data->music == 0? 'No' : $busin_data->music ?></p>
                     </div>
                 </div>
 
 
-                <div class="media" style="margin-top: 2rem">
+                <!-- <div class="media" style="margin-top: 2rem">
                     <img class="mr-3" src="imgs/dubarjiicon.jpg" width="75">
                     <div class="media-body">
                         <h5 class="mt-0 font-weight-bold">Dubarah INC</h5>
@@ -578,7 +795,7 @@ $this->load->view('/business/common/header'); ?>
                         <p class="small no-mar d-inline-block">(415) 715-9767</p>
                         <button type="button" class="btn btn-outline-dark small d-inline-block">Get Quote</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -589,10 +806,10 @@ $this->load->view('/business/common/header'); ?>
             <div class="modal-content">
                 <div class="modal-header grey-lighten-2" style="padding: 0 2rem 0.5rem 2rem;">
                     <div class="media" style="margin-top: 2rem">
-                        <img class="mr-3" src="imgs/dubarah-footer-img.jpg" width="75">
+                        <img class="mr-3" src="<?php echo base_url() ?>asset/imgs/dubarji.svg" width="75">
                         <div class="media-body" style="padding: 1rem 0;">
-                            <h5 class="mt-0 font-weight-bold">Dubarah INC.</h5>
-                            <p class="small">705-890 Mt Pleasant Rd, Toronto,ON M4P 2L4</p>
+                            <h5 class="mt-0 font-weight-bold"><?php echo $busin_data->name ?>.</h5>
+                            <p class="small"><?php echo $busin_data->address.' , '.$busin_data->province.' , '.$busin_data->address_office ?></p>
                         </div>
                     </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -600,23 +817,44 @@ $this->load->view('/business/common/header'); ?>
                     </button>
                 </div>
                 <div class="modal-body" style="padding: 1.5rem 2rem 1.5rem 2rem;">
+                	<form method="post" id="new_review"  enctype="multipart/form-data"  >
                     <p class="font-weight-bold">Leave a Review</p>
-                    <div style="display: block">
+                    <!-- <div style="display: block">
                         <i class="fa fa-star rated" aria-hidden="true"></i>
                         <i class="fa fa-star rated" aria-hidden="true"></i>
                         <i class="fa fa-star rated" aria-hidden="true"></i>
                         <i class="fa fa-star unrated" aria-hidden="true"></i>
                         <i class="fa fa-star unrated" aria-hidden="true"></i>
                         <span class="grey-text small">Select your Rating</span>
-                    </div>
-                    <input class="form-control col-lg-9" type="text" placeholder="Title" style="margin: 1rem 0;">
-                    <textarea class="form-control" id="" rows="6" placeholder="Start your review .."></textarea>
-                    <i class="fa fa-plus-square fa-2x grey-text mar-top"  aria-hidden="true"></i>
-                    <span class="grey-text mar-left">Upload images (Show others what you got)</span>
+                    </div> -->
+					<div class="rating" style="display: block">
+					<input type="radio" name="rate" id="one" value="1" checked />
+					<label for="one"><i class="fa fa-star"></i></label>
+					<input type="radio" name="rate" id="two" value="2" />
+					<label for="two"><i class="fa fa-star"></i></label>
+					<input type="radio" name="rate" id="three" value="3" />
+					<label for="three"><i class="fa fa-star"></i></label>
+					<input type="radio" name="rate" id="four" value="4" />
+					<label for="four"><i class="fa fa-star"></i></label>
+					<input type="radio" name="rate" id="five" value="5" />
+					<label for="five"><i class="fa fa-star"></i></label>
+					<span class="grey-text small">Select your Rating</span>
+					</div>
+					<input type="hidden" name="bus_id"  value="<?php echo $busi_id ?>" />
+                    <!-- <input class="form-control col-lg-9" type="text" placeholder="Title" style="margin: 1rem 0;"> -->
+                    <textarea class="form-control" id="" name="review" rows="6" placeholder="Start your review .."></textarea>
+                   
+                    <span class="upload-button-wrapper">
+						<input class="upload-button" id="upload" name="file" type="file"/>
+					  <label style="background-color: #fff" class="upload-label" for="upload"> <i class="fa fa-plus-square fa-2x grey-text mar-top"  aria-hidden="true"></i>  <span class="grey-text mar-left">Upload images (Show others what you got)</span></label>
+					</span>
+					<span class="upload-filename" id="upload-filename"></span>
+                   
                 </div>
                 <div class="modal-footer" style="padding: 1rem 2rem;">
-                    <button type="button" class="btn btn-primary duGreen no-border">Submit</button>
+                    <button onclick="add_review()" type="button" class="btn btn-primary duGreen no-border">Submit</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -624,6 +862,311 @@ $this->load->view('/business/common/header'); ?>
 <?php $this->load->view('business/common/footer'); ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
 <script type="text/javascript">
-	
+	document.getElementById("upload").onchange = function () {
+ document.getElementById("upload-filename").innerHTML = this.value;
+};
 	baguetteBox.run('.tz-gallery');
+
+    $(document).ready(function () { init_load(); //('','');
+      /// -------- Filters --------------
+      $('.featfltrs').on('click',function (e) {
+            val = $(e.target).attr('id') ;
+            setParamURLFilter('feat',val );
+      });
+      $('.pricfltr').on('click',function (e) {
+            val = $(e.target).attr('id') ;
+            setParamURLFilter('prc',val );
+      });
+      $('.ctyNearfltr').on('click',function (e) {
+            val = $(e.target).attr('id') ;
+            setParamURLFilter('cty',val );
+      });
+      $('.srtBy').on('click',function (e) {
+            val = $(e.target).attr('id') ;
+            setParamURLFilter('srt',val );
+      });
+      $('#opendBusinessBtn').on('click',function(){
+          if( ! $("#opendBusinessBtn").hasClass('btn-success') )
+            {
+              $("#opendBusinessBtn").removeClass('btn-outline-secondary');
+              $("#opendBusinessBtn").addClass('btn-success');
+              setParamURLFilter('opn','1');
+            }
+          else
+            {
+              $("#opendBusinessBtn").removeClass('btn-success');
+              $("#opendBusinessBtn").addClass('btn-outline-secondary');
+              removeParamURLFilter('opn');
+            }
+      });
+      // ----- Styling ----------
+      $('#allfilterBtn').on('click',function(){
+            c= $("#filtersCard").css('display');
+            if( c == "none" )
+              {$("#allfilterBtn").addClass('btn-success');}
+              else
+              {$("#allfilterBtn").removeClass('btn-success');}
+            $("#filtersCard").toggle('slow');
+      });
+  });
+	function add_review()  {
+		if (typeof FormData !== 'undefined') {
+
+        // send the formData
+        var formData = new FormData( $("#new_review")[0] );
+
+	        $.ajax({
+	            url : '<?php echo base_url() ?>add-review',  // Controller URL
+	            type : 'POST',
+	            data : formData,
+	            async : false,
+	            cache : false,
+	            contentType : false,
+	            processData : false,
+	            success : function(data) {
+	            	console.log(data);
+	                res = JSON.parse(data);
+	               
+	                
+	                if (res[0]) {
+	                	swal({
+		            title: '<?php echo trans('success'); ?>',
+		            text: '<?php echo 'Done' ?>' ,
+		            type: 'success',
+		            html:true,
+		            
+		            showConfirmButton:true
+		        });
+	                	
+	                } else if (res[1]){
+	                	swal({
+		            title: '<?php echo trans('fail'); ?>',
+		            text: res[1] ,
+		            type: 'error',
+		             html:true,
+		            
+		            showConfirmButton:true
+		        });
+	                } else {
+	      swal({
+		            title: 'error',
+		            text: 'error' ,
+		            type: 'error',
+		            
+		            showConfirmButton:true
+		        });
+	                };
+	            }
+	        });
+	
+	    } else {
+	       message("Your Browser Don't support FormData API! Use IE 10 or Above!");
+	    }   
+      };		
+		
+		
+		
+		
 </script>
+<script type="text/javascript">
+function city_input_change(val) {
+    if(val != '')
+    {
+        console.log(val);
+            $.ajax({
+                  url: '<?php echo base_url()?>get_busin_cities/' +  val,
+                  success: function(data) {
+                     arr = JSON.parse(data);
+                      if (arr) {
+                          elms = "";
+                          for (var i = 0; i < arr.length; i++) {
+                            elms += '<a href="#" onclick="setParamURLFilter('+"'cty'"+','+arr[i].id +' )"  id="'+arr[i].id +'" class="list-group-item ctyfindId list-group-item-action"><strong><span> '+ arr[i].name + " ,"+ arr[i].cntry+'</span></strong></a>' ;
+                          }
+                          $("#city_res").html(elms);
+                      };
+                  }
+              });
+    }
+     $("#city_res").css({'display':'block'});
+}
+function find_input_change(val) {
+    $("#find_res").css({'display' : 'none'});
+    $("#find_get_res").css({'display' : 'block'});
+    if(val != '')
+    {
+         $.ajax({
+                  url: '<?php echo base_url()?>get_busin_findedcategory/' +  val,
+                  success: function(data) {
+                    arr = JSON.parse(data);
+                    // console.log(arr['business']);
+                      if (arr['business'] && arr['business'].length > 0) {
+                          business_elms = "";
+                          for (var i = 0; i < arr['business'].length; i++) {
+                            business_elms += '<a href="#"   id="'+arr['business'][i].id +'" class="list-group-item busfindId list-group-item-action"> '+
+                                '<span class="col-md-3"><img width="50" src="'+arr['business'][i].logo+'"></span>'
+                            +'<span> '+ arr['business'][i].name + '</span></a>' ;
+                          }
+                          $("#find_res_b").html(business_elms);
+                      }
+                      if (arr['cats'] &&  arr['cats'].length > 0 ) {
+                          cats_elms = "";
+                          for (var i = 0; i < arr['cats'].length; i++) {
+                            cats_elms += '<a href="#" onclick="setParamURLFilter('+"'findcat'"+',`'+ arr['cats'][i].name+'` )"  id="'+arr['cats'][i].id +'" class="list-group-item catfindId list-group-item-action"><strong><span> '+ arr['cats'][i].name + 
+                            '</span></strong></a>' ;
+                          }
+                          $("#find_res_c").html(cats_elms);
+                      }
+                      if (arr['subCat'] && arr['subCat'].length > 0) {
+                          subCat_elms = "";
+                          for (var i = 0; i < arr['subCat'].length; i++) {
+                            subCat_elms += '<a href="#" onclick="setParamURLFilter('+"'findcat'"+',`'+arr['subCat'][i].name +'` )"  id="'+arr['subCat'][i].id +'" class="list-group-item catfindId list-group-item-action"><strong><span> '+ arr['subCat'][i].name + 
+                            '</span></strong></a>' ;
+                          }
+                          $("#find_res_sc").html(subCat_elms);
+                      }
+                    }
+              });
+    }else{
+        $("#find_get_res").css({'display' : 'none'});
+    }
+}
+$(document).ready(function(){
+    $("#find_res , #find_get_res").css({'display':'none'});
+    $("#find_res , #find_get_res , #city_res").css({  'position':'absolute' , 'z-index':'15'});
+    $("#city_res").focusout( function(){
+        $("#city_res").css({'display':'none'});
+    });
+    $("#find_inp").focus(function(){ //
+        c= $("#find_inp").val();
+        if(c == "")
+            $("#find_res").toggle();
+    }).focusout( function(){
+        $("#find_res").css({'display':'none'});
+    } );
+    $("#find_get_res").focusout( function(){
+        $("#find_get_res").css({'display':'none'});
+    } );
+    $("#city_inp").keyup(function(e){
+        city_input_change($("#city_inp").val());
+
+    })
+    $("#find_inp").keyup(function(e){
+        find_input_change($("#find_inp").val());
+    })
+    //alert('22');
+    //========= Search =============
+    $("#go_find").click(function(){
+        cty = $("#city_inp").val().replace(/\s/g, '') ;
+        cat = $("#find_inp").val() ;
+        if( cty == "" && checkParamURLFilter('cty') ){
+            //console.log("CCC " + cty);
+            removeParamURLFilter('cty');
+        }else{
+            //city_input_change(cty)
+        }
+        if( cat == "" && checkParamURLFilter('cat') ){
+            removeParamURLFilter('findcat');
+        }else{
+            //find_input_change(cat)
+        }
+    });
+})
+</script>
+<script src="<?php echo base_url() . 'asset/js/find_fliter.js' ;?>"></script>
+ 
+<script type="text/javascript">
+function city_input_change(val) {
+	 $("#find_res").css({'display' : 'none'});
+    $("#find_get_res").css({'display' : 'none'});
+    if(val != '')
+    {
+        console.log(val);
+            $.ajax({
+                  url: '<?php echo base_url()?>get_busin_cities',
+                  method:"post",
+                  data:{val:val},
+                  
+                  
+                  success: function(data) {
+                     arr = JSON.parse(data);
+                      if (arr) {
+                          elms = "";
+                          for (var i = 0; i < arr.length; i++) {
+                            elms += '<a href="<?php echo base_url().'business-filter?srt=mv&findcat=' ; ?>'   +arr[i].id +'"  class="list-group-item ctyfindId list-group-item-action"><strong><span> '+ arr[i].name + " ,"+ arr[i].cntry+'</span></strong></a>' ;
+                          }
+                          $("#city_res").html(elms);
+                      }
+                  }
+              });
+   	 $("#city_res").css({'display':'block'});
+    }else{
+    	
+    	 $("#city_res").css({'display':'none'});
+    }
+    
+    
+}
+function find_input_change(val) {
+	$("#city_res").css({'display' : 'none'});
+    $("#find_res").css({'display' : 'none'});
+    $("#find_get_res").css({'display' : 'block'});
+    if(val != '')
+    {
+         $.ajax({
+                  url: '<?php echo base_url()?>get_busin_findedcategory',
+                      method:"post",
+                  	 data:{val:val},
+                  
+                  
+                  success: function(data) {
+                  //	alert(data);
+                    arr = JSON.parse(data);
+                    //console.log(arr['business']);
+                      if (arr['business'] && arr['business'].length > 0) {
+                          business_elms = "";
+                          for (var i = 0; i < arr['business'].length; i++) {
+                            business_elms += '<a href="<?php echo base_url().'business-profile/' ?>'+arr['business'][i].id +'"   id="'+arr['business'][i].id +'" class="list-group-item busfindId list-group-item-action"> '+
+                                '<span class="col-md-3"><img width="50" src="<?php echo base_url()?>'+arr['business'][i].logo+'"></span>'
+                            +'<span> '+ arr['business'][i].name + '</span></a>' ;
+                          } 
+                          alert(business_elms);
+                          $("#find_res_b").html(business_elms);
+                      }else{
+                      	
+                      	
+                      	 bemet = '<a href="" class="list-group-item list-group-item-action">No Business Founded. </a>';
+                      	 $("#find_res_b").html(bemet);
+                      	
+                      }
+                      if (arr['cats'] &&  arr['cats'].length > 0 ) {
+                          cats_elms = "";
+                          for (var i = 0; i < arr['cats'].length; i++) {
+                            cats_elms += '<a href="<?php echo base_url().'business-filter?srt=mv&findcat=' ; ?>'   + arr['cats'][i].name+'"   id="'+arr['cats'][i].id +'" class="list-group-item catfindId list-group-item-action"><strong><span> '+ arr['cats'][i].name + 
+                            '</span></strong></a>' ;
+                          }
+                          $("#find_res_c").html(cats_elms);
+                      }else{
+                      	
+                      	 catempty = '<a href="#" class="list-group-item list-group-item-action"> No Main Category Founded. </a>';
+                      	 $("#find_res_c").html(catempty);
+                      	
+                      }
+                      if (arr['subCat'] && arr['subCat'].length > 0) {
+                          subCat_elms = "";
+                          for (var i = 0; i < arr['subCat'].length; i++) {
+                            subCat_elms += '<a href="<?php echo base_url().'business-filter?srt=mv&findcat=' ; ?>'   + arr['cats'][i].name+'"   id="'+arr['subCat'][i].id +'" class="list-group-item catfindId list-group-item-action"><strong><span> '+ arr['subCat'][i].name + 
+                            '</span></strong></a>' ;
+                          }
+                          $("#find_res_sc").html(subCat_elms);
+                      }else{
+                      	 subempty = '<a href="#" class="list-group-item list-group-item-action">No Category Founded. </a>';
+                      	 $("#find_res_sc").html(subempty);
+                      	
+                      }
+                    }
+              });
+    }else{
+        $("#find_get_res").css({'display' : 'none'});
+    }
+}
+  </script> 

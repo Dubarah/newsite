@@ -1,4 +1,24 @@
-<?php $this->load->view('common/header'); ?>
+<?php 
+                                    	
+                                    	$value = 0;
+                                    	 if(!empty($ad->link)):
+										$value = 4;
+										
+										elseif(!empty($ad->phone) && empty($ad->email)):
+											
+											$value = 1;
+										elseif(empty($ad->phone) && !empty($ad->email)):
+											$value = 2;
+										elseif(!empty($ad->phone) && !empty($ad->email)):		
+											$value = 3;
+										
+										endif;
+										echo $value;
+										exit;
+                   
+
+
+$this->load->view('common/header'); ?>
 
 
 <section id="main" class="clearfix ad-details-page">
@@ -105,12 +125,13 @@
 
                                         <div class="upload-section" >
                                             <label class="fa fa-upload" for="input-image-hidden" style="margin-left: 11px;">
-                                                <input type="file"  id="input-image-hidden" onchange="document.getElementById('image-preview').src = window.URL.createObjectURL(this.files[0]),show()"   id="up" name="fs_image1" style="display:none"/>
+                                                <input type="file"  id="input-image-hidden" 
+                                                onchange="document.getElementById('image-preview').src = window.URL.createObjectURL(this.files[0]),show()"   id="up" name="fs_image1" style="display:none"/>
                                             </label>
                                         </div>
                                     </div>
                                     <label class="col-sm-3 upload-image" for="upload-image-one" id="img" style="margin-bottom: 28px;">
-                                        <img  src='' alt='Images' class='img-responsive'  id="image-preview" width="150" height="150" />
+                                        <img  src='<?php echo base_url() ?>' alt='Images' class='img-responsive'  id="image-preview" width="150" height="150" />
                                     </label>
                                     <span><?php echo form_error('logo') ? form_error('logo') : '' ?></span>
                                 </div>
@@ -221,13 +242,30 @@
                                 <div class="row form-group">
                                     <label class="col-sm-3 label-title"><?php echo trans('choose') ?><span class="required">*</span></label>
                                     <div class="col-sm-9">
-                                        <input type="radio" name="how" onclick="javascript:yesnoCheck();" value="1" id="phone">
+                                    	
+                                    	<?php
+                                    	
+                                    	$value = 0;
+                                    	 if(!empty($ad->link)):
+										$value = 4;
+										
+										elseif(!empty($ad->phone) && empty($ad->email)):
+											
+											$value = 1;
+										elseif(empty($ad->phone) && !empty($ad->email)):
+											$value = 2;
+										elseif(!empty($ad->phone) && !empty($ad->email)):		
+											$value = 3;
+										
+										endif; ?>
+                   
+                                        <input type="radio" name="how" onclick="javascript:yesnoCheck();" <?php echo $ad->phone && !$ad->email ? 'checked' : '' ?> value="1" id="phone">
                                         <label for="phone"><?php echo trans('mobile') ?></label>
-                                        <input type="radio" name="how" onclick="javascript:yesnoCheck();" value="2" id="email">
+                                        <input type="radio" name="how" onclick="javascript:yesnoCheck();" <?php echo !$ad->phone && $ad->email ? 'checked' : '' ?> value="2" id="email">
                                         <label for="email"><?php echo trans('email') ?></label>
-                                        <input type="radio" name="how"onclick="javascript:yesnoCheck();" value="3" id="both">
+                                        <input type="radio" name="how"onclick="javascript:yesnoCheck();" <?php echo $ad->phone && $ad->email ? 'checked' : '' ?> value="3" id="both">
                                         <label for="both"><?php echo trans('both') ?></label>
-                                        <input type="radio" name="how" onclick="javascript:yesnoCheck();" value="4" id="link">
+                                        <input type="radio" name="how" onclick="javascript:yesnoCheck();"  value="4" id="link" <?php  if($ad->link): echo 'checked'; endif; ?>>
                                         <label for="link"><?php echo LANG() == 'en' ? "My own link" : "الرابط الخاص بي" ?></label>
                                     </div>
                                 </div>
@@ -285,7 +323,7 @@
                                    
                                     
                                 </label>
-                                <button type="submit" id="submit" class="btn btn-primary" disabled="true">Post Your Dubarah</button>
+                                <button type="submit" id="submit" class="btn btn-primary" disabled="true">Edit Your Job</button>
                             </div>
 
 

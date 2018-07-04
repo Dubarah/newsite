@@ -23,6 +23,99 @@ class BusinessModel extends CI_Model {
         $headers=get_headers($url);
         return stripos($headers[0],"200 OK") ? true : false ;
     }
+	
+	public function home_data($value='')
+	{
+		    $sql_bus = "
+               SELECT b.id , b.*, ci.* ,co.* , cat.*  FROM businesses b  
+                inner join city ci on ( ci.city_id = b.cityId)
+                inner join country  co on ( co.country_id = b.countryId )   
+                left join busi_catgo_fks catfks on ( catfks.busi_id = b.id)
+                left join categories  cat on ( cat.category_id  = catfks.cat_id)
+                left join busi_gen_feat_fks genfks on ( genfks.busi_id = b.id)
+                left join busi_general_features gen on ( genfks.gf_id = gen.id)
+                left join busi_datetimes dtm on ( dtm.busi_id = b.id)
+                left join  busi_catgo_parents catp on ( catp.id = b.category_prnt )  
+                left join  busi_catgo cats on ( cats.parent_id = catp.id)
+                where 
+                b.status = 0 ";
+				//echo "$sql_bus";exit;   
+                	// $t = $this->db->query($sql_bus)->result();
+			// echo "<pre>";
+			// print_r($t);
+			// exit;	
+
+        //prefered countries with it's id
+        $countries  = array(
+            'Syria'                 => '213',
+            'Turkey'                => '223',
+            'United Arab Emirates'  => '229',
+            'Lebanon'               => '121',
+            'Saudi Arabia'          => '191'
+        );
+
+        //get user country 
+        $res = $this->get_user_country();
+        if(!empty($res)){
+            $country = $res->country_id;
+            $name = $res->country_english_name;
+        }else{
+            $country = 213;
+            $name = "Syria";
+        }
+        
+        
+
+        //get user's country data (ach | jobs)
+        if(in_array($country, $countries))
+            $i = 1;
+        else{
+          
+            $data['country'] = $data['country_j'] = $name;
+			
+			$sql_bus = $sql_bus." AND b.countryId = $country 
+               GROUP BY b.id   LIMIT 8";
+            $data['bus'] = $b = $this->db->query($sql_bus)->result();
+            $i = 2;
+        }
+        
+		 $data['bus_cat']=[];
+        foreach ($countries as $key => $value){
+        	
+		//	echo "$value";exit;
+            $query_bus = $sql_bus." AND b.countryId = $value 
+              GROUP BY b.id   LIMIT 8";
+            $d  = 'bus'.$i;
+            if($country==$value)
+                $d  = 'bus';
+            $$d = $this->db->query($query_bus)->result();
+			// echo "<pre>";
+			// print_r($$d);
+			// echo "=========";
+            if(empty($$d))
+                continue;
+            $data[$d] = $$d;
+			 foreach($data[$d] as $bus){
+                $bus_id =$bus->id;
+                $sql = "SELECT * FROM  busi_catgo s,  busi_catgo_fks ass 
+                				 WHERE ass.busi_id=$bus_id 
+                				 AND ass.cat_id =s.id 
+                				 LIMIT 3 ";
+                $data['bus_cat'][$bus_id] = $this->db->query($sql)->result();
+            }
+            if($country==$value){
+                $data['country']=$key;
+                continue;
+            }
+            else
+                $data['countryb'.$i]=$key;
+            if($i == 3)
+                break;
+            $i++;
+        }
+        
+		return$data;
+	}
 
     private function base64ToMyImage($data   , $filenamePath  )
     {
@@ -73,8 +166,12 @@ class BusinessModel extends CI_Model {
     {
         $res1 = $res2= [];
         $path =  'uploads/businesses/' . $dir_path ; 
-        if (!file_exists( $path )) 
+        if (!file_exists( $path )) {
             mkdir( $path, 0755, true);
+			$reviews = $path.'reviews/';
+		 	 mkdir( $reviews, 0755, true);
+		}
+		
         $logo_str = $allsections['business_section3']['logo_img'];
         $cover_str = $allsections['business_section3']['cover_img'];
 
@@ -98,7 +195,7 @@ class BusinessModel extends CI_Model {
         return [$res1, $res2];
     }
     private function addUpdateImages($businesId , $allsections , $dir_path ) //private
-    {
+    {		
 
         try {
                  $files = []; $res = [];
@@ -124,13 +221,15 @@ class BusinessModel extends CI_Model {
                     throw new \Exception('uploaded images not found');
                 }
                 ///------------ DB DELETE OLD  ------------
-                $oldfiles = $this->db->get_where('busi_imgs', array('busi_id' => $businesId))->row();
-                if(isset($oldfiles))
-                {
-                    foreach ($oldfiles as  $file) {
-                        unlink($file->img);
-                    }
-                }
+                $oldfiles = $this->db->get_where('busi_imgs', array('busi_id' => $businesId))->result();
+			
+				//exit;
+			    // if(isset($oldfiles))
+                // {
+                    // foreach ($oldfiles as  $file) {
+                        // unlink($file->img);
+                    // }
+                // }
                 $this->db->delete('busi_imgs', array('busi_id' => $businesId));
                 ///------------ DB Insert------------
                 //print_r($files) ; exit;
@@ -312,9 +411,88 @@ class BusinessModel extends CI_Model {
         }
      return ;
     }
+	
+	
+	public function add_review($id , $rate  , $review ,$bus_id)
+	{
+		$fs_images 	 = array();
+		$i			 = 0;
+		$logos[]	 = array();
+		$errors		 = array();
+		$ext		 = array();
+		$url = $id.'_'.$bus_id;
+		$url = "uploads/businesses/$url/reviews/";
+		 if (!file_exists( $url )) {
+                    mkdir( $url, 0755, true);
+		 }
+		$config['upload_path']   = "$url";
+		$path				     = $config['upload_path'];
+		$config['allowed_types'] = 'gif|jpg|jpeg|png';
+		$config['max_size'] 	 = '4096';
+		$config['max_width'] 	 = '5000';
+		$config['max_height'] 	 = '5000';
+		$config['overwrite'] 	 = FALSE;
+		$config['encrypt_name'] = TRUE; 
+		$this->load->library('upload');		
+		foreach ($_FILES as $fieldname => $fileObject)  //fieldname is the form field name
+		{
+		    if (!empty($fileObject['name']))
+		    {
+		        $this->upload->initialize($config);
+				
+		        if (!$this->upload->do_upload($fieldname))
+		        {
+		            $error = $this->upload->display_errors();
+		            $errors[] = $error;
+					return array(0, $error);
+		        } else {
+		        	
+		        	$upload_data     = $this->upload->data();
+		            $fs_images[$i] = $upload_data['file_name'];
+					//print_r($fs_images); return;
+					$i++;
+				}
+			}	
+		}
+		
+		
+				   $this->db->trans_start();
+		 if (isset($fs_images[0])) {
+				   $reviews =  array(  'img' => $fs_images[0],
+										'busi_id' => $bus_id,
+										'user_id' => $id,
+										'rate'    => $rate,
+										'review'  => $review,
+										'created_date' => date('Y-m-d h:i:sa')
+						
+										);
+	                        			
+
+				    $this->db->insert('busi_reviews', $reviews);	
+			}else{
+			
+				    $reviews =  array(  
+									'busi_id' => $bus_id,
+									'user_id' => $id,
+									'rate'    => $rate,
+									'review'  => $review,
+									'created_date' => date('Y-m-d h:i:sa')
+								);
+	                        			
+
+		            $this->db->insert('busi_reviews', $reviews);	
+			
+			
+			
+		}
+		 
+		 
+		$this->db->trans_complete();
+		return array($this->db->trans_status(), 0);
+	}
     
     public function add_new_business( $userId,$allsections ,$isEdit ,$busi_id = null)
-    {
+    {		
         //print_r($allsections); return ;
         $insert = array (
         'user_id'  => $userId   ,
@@ -367,6 +545,8 @@ class BusinessModel extends CI_Model {
             $businesId = $busi_id;    
 			
         }
+		
+		
        if($businesId > 0 ){
             
             $data = $allsections;
@@ -377,7 +557,7 @@ class BusinessModel extends CI_Model {
 			
             $dir_path = $userId."_".$businesId ;
             $this->addUpdateLogoCoverImages($businesId  , $data , $dir_path);
-            $this->addUpdateImages( $businesId  , $data , $dir_path );  
+		    $this->addUpdateImages( $businesId  , $data , $dir_path );  
             //echo "done ..." ; return ; 
             $res = true;
 			
@@ -399,6 +579,8 @@ class BusinessModel extends CI_Model {
 		$data['u_id'] = $u_id;
 		$data['userData']=$this->session->userdata('firstSection');
         $sql = "SELECT *  FROM busi_catgo_parents   ORDER BY name";
+		
+		
         $data['categories'] = $this->db->query($sql);
         //-------------- Step 2 -----------------
         //-------------- Step 3 -----------------
@@ -411,21 +593,46 @@ class BusinessModel extends CI_Model {
     {
         //echo $busin_id; exit;
         $data = $this->create() ;
+		
         ///--------- Busin
         $sql = "SELECT *  FROM businesses  where id =".$busin_id ;
-        $data['busin_data']  = $this->db->query($sql)->result();
+        $data['busin_data']  = $b_data = $this->db->query($sql)->result();
+       
+        $cityId = $b_data[0]->cityId;
+		
+        $sql = "SELECT *  FROM  city  where city_id =".$cityId ;
+        $data['my_cityId'] = $this->db->query($sql)->row();
         //------------------busi_datetimes
         $sql = "SELECT *  FROM busi_datetimes  where busi_id =".$busin_id ;
         $data['busin_datetimes'] = $this->db->query($sql)->result();
         //------------------busi_faq
         $sql = "SELECT *  FROM busi_faq  where busi_id =".$busin_id ;
         $data['busin_faq'] = $this->db->query($sql)->result();
+		// echo "<pre>";
+		// print_r($data['busin_faq']);
+		// exit;
+// 			
+		
          //------------------busi_catgo_fks
         $sql = "SELECT *  FROM busi_catgo_fks  where busi_id =".$busin_id ;
         $arr = $this->db->query($sql)->result(); $cat_str = ''; 
-        foreach ($arr as  $cat) 
-            $cat_str .= $cat->cat_id . ',' ;
+      $i=0;  foreach ($arr as  $cat) {
+				
+			if($i == 0){
+			
+            $cat_str .= $cat->cat_id ;
+			
+			}else {
+				  $cat_str .=  ','.$cat->cat_id ;
+			}
+			$i++;
+            
+            }
         $data['busin_catgo'] = $cat_str;
+		$sql = "SELECT *  FROM  busi_catgo where id in($cat_str)   ORDER BY name";
+		
+		
+        $data['my_categories'] = $this->db->query($sql);
         //------------------gen_feat
         $sql = "SELECT *  FROM busi_gen_feat_fks  where busi_id =".$busin_id ;
         $data['busin_genfeat'] = $this->db->query($sql)->result();
@@ -474,7 +681,7 @@ class BusinessModel extends CI_Model {
                  );
             break;
             case '3':
-            return [];//array (    // no need
+            return array (    // no need
                 // 'Price' =>  form_error('Price', '<b style="color: red">', '</b>'),
                 // 'GeneralFeatures' =>  form_error('GeneralFeatures', '<b style="color: red">', '</b>'),
                 // 'Parking' =>  form_error('Parking', '<b style="color: red">', '</b>'),
@@ -484,6 +691,12 @@ class BusinessModel extends CI_Model {
                 // 'Alcohol' =>  form_error('Alcohol', '<b style="color: red">', '</b>'),
                 // 'Music' =>  form_error('Music', '<b style="color: red">', '</b>'),
                 // 'weblink' =>  form_error('weblink', '<b style="color: red">', '</b>'), );
+                
+                'calltype' =>  form_error('calltype', '<b style="color: red">', '</b>'),
+                'weblink'  =>  form_error('weblink', '<b style="color: red">', '</b>'),
+                
+               ); 
+                
             break;
             default:
                 return array ();
@@ -497,10 +710,26 @@ class BusinessModel extends CI_Model {
         $va_current  =  $part_num - 1 ;
          switch ($va_current ) {
             case '1':
-                if( $is_edit == 1)
+                if( $is_edit == 1){
                     $this->form_validation->set_rules('name'  , trans('business-name'),'required|trim|alpha_numeric_spaces'); 
-                else
-                    $this->form_validation->set_rules('name'  , trans('business-name'),'required|trim|alpha_numeric_spaces|is_unique[businesses.name]'); 
+              		    $this->form_validation->set_rules('province', trans('business-province'),'required|trim'); 
+                $this->form_validation->set_rules('postal' ,  trans('business-postal'),'required|trim'); 
+                $this->form_validation->set_rules('workPhone',    trans('business-workPhone'),'required|trim'); 
+                $this->form_validation->set_rules('mobilePhone',  trans('business-mobilePhone'),'trim'); 
+                $this->form_validation->set_rules('emailAddress', trans('business-emailAddress'),'required|trim|valid_email');
+                $this->form_validation->set_rules('addressOffice',trans('business-addressOffice'),'required|trim');  
+                $this->form_validation->set_rules('address',
+                     trans('business-address'),'required|trim');  
+
+                $this->form_validation->set_rules('country',trans('business-country'),'required|trim');  
+                $this->form_validation->set_rules('city',trans('business-city'),'required|trim');  
+                $this->form_validation->set_rules('category_prnt',trans('business-category_prnt'),'required|trim');  
+                $this->form_validation->set_rules('category_sub[]',trans('business-category'),'required');  
+                 $this->form_validation->set_rules('webAddress' ,  trans('business-webAddress'),'required|trim'); 
+			  
+			  } else{
+					
+                $this->form_validation->set_rules('name'  , trans('business-name'),'required|trim|alpha_numeric_spaces|is_unique[businesses.name]'); 
                 $this->form_validation->set_rules('province', trans('business-province'),'required|trim'); 
                 $this->form_validation->set_rules('postal' ,  trans('business-postal'),'required|trim'); 
                 $this->form_validation->set_rules('workPhone',    trans('business-workPhone'),'required|trim'); 
@@ -515,8 +744,10 @@ class BusinessModel extends CI_Model {
                 $this->form_validation->set_rules('category_prnt',trans('business-category_prnt'),'required|trim');  
                 $this->form_validation->set_rules('category_sub[]',trans('business-category'),'required');  
                  $this->form_validation->set_rules('webAddress' ,  trans('business-webAddress'),'required|trim'); 
-                break;
+                 }
+			    break;
             case '2':
+		
                 $this->form_validation->set_rules('day1' ,      trans('business-day'),'required|trim'); 
                 $this->form_validation->set_rules('timeFrom1' , trans('business-timeFrom'),'required|trim');
                 $this->form_validation->set_rules('timeto1' ,   trans('business-timeto'),'required|trim'); 
@@ -536,7 +767,7 @@ class BusinessModel extends CI_Model {
                 // $this->form_validation->set_rules('Pinterest', trans('business-Pinterest'),'trim');
                 break;
             case '3':
-            return true;
+            
                 // $this->form_validation->set_rules('Price' ,      trans('business-Price'),'required|trim'); 
                 // $this->form_validation->set_rules('Parking' ,    trans('business-Parking'),'required|trim'); 
                 // $this->form_validation->set_rules('WiFi' ,       trans('business-WiFi'),'required|trim'); 
@@ -544,7 +775,8 @@ class BusinessModel extends CI_Model {
                 // $this->form_validation->set_rules('MealsServed', trans('business-MealsServed'),'required|trim'); 
                 // $this->form_validation->set_rules('Alcohol' ,    trans('business-Alcohol'),'required|trim'); 
                 // $this->form_validation->set_rules('Music' ,      trans('business-Music'),'required|trim'); 
-                // $this->form_validation->set_rules('weblink' ,    trans('business-weblink'),'required|trim'); 
+                $this->form_validation->set_rules('calltype' ,      trans('business-calltype'),'required|trim'); 
+                $this->form_validation->set_rules('weblink' ,    trans('business-weblink'),'required|trim'); 
                 // $this->form_validation->set_rules('GeneralFeatures' , trans('business-GeneralFeatures'),'required|trim'); 
                 break;
             default:
@@ -574,6 +806,20 @@ class BusinessModel extends CI_Model {
         $res = $this->db->query($sql)->result();  
         return $res;
     }
+    
+    
+     public function calltoaction()
+    {
+        $sql = "select name , call_action_btn , call_action_weblink , cover from businesses  b  order by id DESC  limit 3" ;
+        $res = $this->db->query($sql)->result();  
+        return $res;
+    }
+    
+    
+    
+    
+    
+	
     /// =========================== FILTER PAGE ============================
      ///----------------- Filter Page ------------------------
     private function getGenFeats()
@@ -771,7 +1017,17 @@ class BusinessModel extends CI_Model {
        
         //------------------busi_datetimes
         $sql = "SELECT *  FROM busi_datetimes  where busi_id =".$busin_id ;
-        $data['busin_datetimes'] = $this->db->query($sql)->result();
+        $busin_datetimes =  $this->db->query($sql)->result();
+        $opendate = array();
+        foreach ($busin_datetimes as $value) {
+            			
+            $opendate["$value->day"] = 	$value;	
+            	
+            
+        }
+        
+         $data['busin_datetimes'] = $opendate;
+       
         //------------------busi_faq
         $sql = "SELECT *  FROM busi_faq  where busi_id =".$busin_id ;
         $data['busin_faq'] = $this->db->query($sql)->result();
@@ -786,12 +1042,34 @@ class BusinessModel extends CI_Model {
         $data['busin_catgo'] = $cat_str;
 		
         //------------------gen_feat
-        $sql = "SELECT *  FROM busi_gen_feat_fks  where busi_id =".$busin_id ;
+        $sql = "SELECT *  FROM busi_gen_feat_fks bff , busi_general_features bgf  where bff.gf_id = bgf.id and  busi_id =".$busin_id ;
         $data['busin_genfeat'] = $this->db->query($sql)->result();
         //------------------busi_imgs
         $sql = "SELECT *  FROM busi_imgs  where busi_id =".$busin_id ;
         $data['busin_imgs'] = $this->db->query($sql)->result();
-        return $data;
+       $sql = "SELECT *  FROM  busi_reviews br , user u where  u.id = br.user_id   and  br.busi_id =$busin_id " ;
+	       $data['busin_reviews'] = $this->db->query($sql)->result();
+	   $sql = "SELECT SUM(rate) rate, count(id) rate_count FROM busi_reviews WHERE busi_id=$busin_id";
+				$general_rate = $this->db->query($sql)->row();
+
+				$rate = $general_rate->rate;
+				$count = $general_rate->rate_count;
+				//print_r($general_rate); exit;
+				
+				if($count == 0){
+				$newrate = 0;
+				}else {
+				$newratee = $rate / $count;
+        		$newrate = floor($newratee);
+				}
+				$data['busin_rate'] =	$newrate;
+				$data['rate_count'] =	$count;
+    			$data['now_user_id'] = $now_user_id = $this->session->userdata('user_id');
+	  
+	  	// echo "<pre>";
+	  	// print_r($data);
+		// exit;
+	    return $data;
     	
         
     }

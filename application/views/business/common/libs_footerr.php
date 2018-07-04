@@ -4,7 +4,11 @@
     <script src="<?php echo base_url()?>ass/js/sweetalert.min.js"></script>
     <script src="<?php echo base_url() ?>ass/js/toastr.min.js"></script>
 
-    <script src="<?php echo base_url() ?>asset/datetime/bootstrap-timepicker.min.js"></script>
+  <script type="text/javascript" src="<?php echo base_url() ?>asset/moment.js"></script>
+ <script type="text/javascript" src="<?php echo base_url() ?>asset/datetime/js/tempusdominus-bootstrap-4.min.js"></script>
+
+
+    <!-- <script src="<?php echo base_url() ?>asset/datetime/bootstrap-timepicker.min.js"></script> -->
 
         <script type="text/javascript">
             $(document).ready(function() {
@@ -478,7 +482,7 @@
                   $('#cover_valhide').val()
                 }
                   formDataList = frmdata.serialize() ;
-                  //console.log(formDataList);
+                  console.log(formDataList);
                    $.post( link ,  formDataList ).done(function( data ) {
                         processfrom(data);
                   });

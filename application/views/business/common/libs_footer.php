@@ -3,9 +3,10 @@
     <script src="<?php echo base_url() ?>ass/js/select2.js"></script>
     <script src="<?php echo base_url()?>ass/js/sweetalert.min.js"></script>
     <script src="<?php echo base_url() ?>ass/js/toastr.min.js"></script>
-
-    <script src="<?php echo base_url() ?>asset/datetime/bootstrap-timepicker.min.js"></script>
-
+ 	<script src="<?php echo base_url() ?>asset/datetime/js/moment.js"></script>
+ 		<!-- <script src="<?php echo base_url() ?>asset/datetime/js/tl.js"></script> -->
+    <script src="<?php echo base_url() ?>asset/datetime/js/tempusdominus-bootstrap-4.min.js"></script> 
+    
         <script type="text/javascript">
             $(document).ready(function() {
                 <?php if ($this->session->userdata('suc_message') || $this->session->userdata('err_message')) { ?>
@@ -41,32 +42,78 @@
 
   <script type="text/javascript">
       function add_new_row(type ,i) { 
+      	
         //// ========================== Create ===============
         if(type == "rowTime"){
-        row="<ul class='list-inline' id='time_row"+i+"'>" +
-          "<div class='list-inline-item'>" +
-         "<select class='form-control tmCls' name='day"+i+"' id='day"+i+"' ><option value='Sun'>Sunday</option><option value='Mon'>Monday</option><option value='Tue'>Tuesday</option><option value='Wed'>Wednsday</option><option value='Thu'>Thursday</option><option value='Fri'>Friday</option><option value='Sat'>Saturday</option></select>" +
-          "</div><div class='list-inline-item'>" +
-           
-          "<div class='bootstrap-timepicker'><div class='form-group'><div class='input-group'><input type='text'  name='timeFrom"+i+"' "+ "id='timeFrom"+i+"' class='form-control timepicker tmCls' placeholder='9:00 am '><div class='input-group-addon'><i class='fa fa-clock-o'></i></div></div></div></div>" +
+        	
+        	
+        	
+        	
+        	
+        	
+      
+          
+          
+          row = "  <div class='row' id='time_row"+i+"' >"+
+    			"<div class='col-sm-4'>"+
+    		 "<div class='form-group'>"+
+    		 "<select class='form-control tmCls' name='day"+i+"' id='day"+i+"' ><option value='Sun'>Sunday</option><option value='Mon'>Monday</option><option value='Tue'>Tuesday</option><option value='Wed'>Wednsday</option><option value='Thu'>Thursday</option><option value='Fri'>Friday</option><option value='Sat'>Saturday</option></select>" +
 
-          "<div class='bootstrap-timepicker'><div class='form-group'><div class='input-group'><input type='text'  name='timeto"+i+"' "+ "id='timeto"+i+"' class='form-control timepicker tmCls' placeholder='5:00 pm '><div class='input-group-addon'><i class='fa fa-clock-o'></i></div></div></div></div>" +
-          // "</div><div class='list-inline-item'>" +
-          // "<input type='text' name='timeto"+i+"' id='timeto"+i+"' class='form-control' placeholder='5:00 pm'>  " +
-          "</div>" +
-          "</ul>" ;
+    	     "</div> </div><div class='col-sm-4'><div class='form-group'>"+
+              "  <div class='input-group date datetimepicker' id='fromtimepicker"+i+"' data-target-input='nearest'>"+
+                    "<input type='text'  name='timeFrom"+i+"' "+ "id='timeFrom"+i+"' class='form-control datetimepicker-input' data-target='#datetimepicker'/>"+
+                   "<div class='input-group-append' data-target='#'fromtimepicker"+i+"'' data-toggle='fromtimepicker"+i+"'>"+
+                       " <div class='input-group-text'><i class='fa fa-clock-o'></i></div>"+
+                  "</div></div></div></div><div class='col-sm-4'>"+
+         
+           " <div class='form-group'>"+
+                "<div class='input-group date datetimepicker' id='' data-target-input='nearest'>"+
+                  " <input type='text'  name='timeto"+i+"' "+ "id='timeto"+i+"'   class='form-control datetimepicker-input' data-target='totimepicker"+i+"'/>"+
+                  "  <div class='input-group-append' data-target='#totimepicker"+i+"' data-toggle='totimepicker"+i+"'>"+
+                       " <div class='input-group-text'><i class='fa fa-clock-o'></i></div> </div> </div></div>  </div>  </div>"+
+       
+         "  <script type='text/javascript'>  $(function () {"+
+             "   $('#fromtimepicker"+i+"').datetimepicker({"+
+                   " format: 'LT'"+
+             "   });"+
+              "   $('#totimepicker"+i+"').datetimepicker({"+
+                 "   format: 'LT'"+
+              "  });"+
+        "    });";
+     
+
         $("#timesContainer").append(row);
         $("#timesCount").val(i);
-        }else if(type === "rowFaq"){
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        }else if(type == "rowFaq"){
           row='<div id="faq_row'+i+'"><input type="text" name="question'+i+'" id="question'+i+'" class="form-control faqCls" placeholder="Question: Ex. What the special about your business">'+
               '<dir class="clear"> </dir>'+
               '<input type="text" name="answer'+i+'" id="answer'+i+'" class="form-control faqCls" placeholder="Answer: We have special and famys recipe since "></div><dir class="clear"> </dir><dir class="clear"> </dir>';
          $("#faqsContainer").append(row);
          $("#faqsCount").val(i);
         }
-        $('.timepicker').timepicker({   showInputs: false   });
+      
+      
+           
+                $('timepicker').datetimepicker({
+                    format: 'LT'
+                });
+        
       }
       function add_edit_row(type ,i, data) { 
+      	
+      	
+      //	alert(type ,i, data);
         //// ========================== Create ===============
         if(type == "rowTime"){
         row="<div class=' row form-group'><ul class='list-inline' id='time_row"+i+"'>" +
@@ -79,6 +126,10 @@
           "<div class='bootstrap-timepicker'><div class='input-group'><input type='text'  value='"+data[2]+"' name='timeto"+i+"' "+ "id='timeto"+i+"' class='form-control timepicker tmCls' placeholder='5:00 pm '><div class='input-group-addon'><i class='fa fa-clock-o'></i></div></div></div></div>" +
           "</div>" +
           "</ul>" ;
+          
+                $('timepicker').datetimepicker({
+                    format: 'LT'
+                });
         $("#timesContainer").append(row);
         /// To check if edit
         $("#day"+i).val(data[0])
@@ -90,27 +141,32 @@
          $("#faqsContainer").append(row);
          $("#faqsCount").val(i);
         }
-        $('.timepicker').timepicker({   showInputs: false   });
+       
       }
       function add_edit_logic() {
         <?php 
+          
+        
         if (isset($busin_datetimes))
         { $i= 1 ;
-          foreach ($busin_datetimes as $dt ) { ?>
+          foreach ($busin_datetimes as $dt ) { ?> 
             add_edit_row("rowTime" ,<?=$i?> , [ '<?=$dt->day?>','<?=$dt->timefrom?>','<?=$dt->timeto?>' ]);
           <?php $i++; }
         }
-        if ( isset($busin_faq) )
+		 if ( isset($busin_faq) )
         { $i= 1 ;
           foreach ($busin_faq as $faq ) { ?>
           add_edit_row("rowFaq" ,<?=$i?> , [ '<?=$faq->ask?>' , '<?=$faq->answer?>' ]);
         <?php $i++; }
         }
+        
+     
         ?>
         return; 
       }
       function add_init_row() {
         input_status = $("#input_status").html();
+        //alert(input_status);
         if('business-edit' == input_status){
             add_edit_logic();
             $("#is_edit").val(1);
@@ -152,7 +208,7 @@
         ids = $("#categorylist_callback").val();
         catId = $("#category_callback").val();
         $("#category_prnt").select2("val", catId);
-        category_changed(catId , ids);
+        //category_changed(catId , ids);
       }
       function run_city_checker() {
         elm = $("#country-select").val() ; 
@@ -198,19 +254,25 @@
   </script>
     <script type ="text/JavaScript">
         function category_changed(id , slctd = -1 ){
+        	
+        	//alert(slctd);
           $("#category_sub").select2("val", "")
           $.ajax({
               url: '<?php echo base_url()?>get_busin_category/' +  id,
               success: function(data) {
                   if (data) {
-                      $("#category_sub").html("" + data);
+                  //	alert(data);
+                     $("#category_sub").html("" + data);
                       if(slctd != -1 ){
                         list = slctd.split(',');
-                        list.splice(-1,1); new_arr = [];
+                        list.splice(-1,1);
+                         new_arr = [];
                         for (var i = 0; i < list.length; i++) {
                           new_arr.push( parseInt(list[i]) );
                         }
-                        $("#category_sub").select2('val', new_arr);
+                        
+                     //  alert(new_arr);
+                      $("#category_sub").select2('val', new_arr);
                       }
                   };
               }
@@ -397,178 +459,7 @@
         }        
     </script>
 
-    <script type="text/javascript">
-       function fill_init_data_card() {
-       /// categories
-        cs = $("#category_sub").select2('data'); cats = "";
-        for (var i = 0; i < cs.length; i++) {
-          cats += cs[i].text + " , <br/> " ;
-        }
-       $("#card_cates").html(cats) ;
-       /// country
-       // flag = 
-       // $("#card_flg").addClass('flag-'+flag);
-      }
-        $(document).ready(function(){
-            $( ".select2MaX3" ).select2( {  maximumSelectionSize: 3 } );
-            $( ".select2" ).select2( );
-            $(".tab-content#business-tab-content")
-             .on("click", "#business-submit ,#business-next-step1, #business-next-step2 , #business-next-step3",function(e){
-              e.preventDefault();
-              swal({
-              title: "Checking Data...",
-              text: "Please wait",
-              imageUrl: "<?php echo base_url()?>asset/imgs/loading_icon.gif",
-              showConfirmButton: false,
-              allowOutsideClick: false ,
-              timer : 500,   });
-              stepNo = 1;
-              switch(true){ 
-                    case $(this).is("#business-submit"):
-                        stepNo= 4;
-                        console.log("step 4 " + stepNo);
-                        break;
-                    case $(this).is("#business-next-step3"):
-                        stepNo= 3;
-                        console.log("step 3 " + stepNo);
-                        break;
-                    case $(this).is("#business-next-step2"):
-                        stepNo= 2;
-                        console.log("step 2 " + stepNo);
-                        fill_init_data_card();
-                        break;
-                    default:
-                        stepNo= 1;                    
-                        console.log("none");
-                        break;
-                }
-                if(stepNo == 3)
-                {
-                  lgo = $("#profile-upload").css("background-image");
-                  cov = $("#cover-upload").css("background-image");
-                  default_img = 'url("<?php echo base_url()?>ass/images/image_profile.jpg")';
-                  if( cov == default_img || lgo == default_img ){ //LOGO_SCRLL                   
-                    //swal("Logo & Cover are mandatory inputs, please check... !!");
-
-                    return;
-                  }
-                }
-                //console.log(  $("#category_sub"). val()  ) ;
-                //console.log($("#category").val());
-               // return;
-                link = '<?php echo base_url()?>business-adding/' + stepNo;
-                frmdata = $('#theForm').find('#section_bus'+ --stepNo)
-                          .find('input , textarea , select') ;  
-                if(stepNo === 2){
-                  imgs = $('#theForm').find('#section_bus2').find('img.myInputedImgs');
-                  formDataList = [] ;// new FormData();
-                  imgs_str="" ;
-                  for ( i = 0; i < imgs.length ; i++) {
-                     string = $(imgs[i]).attr('src');
-                     if(  string.includes( 'demo-img.png' )  === false  )
-                     {
-                      imgs_str =  string  + "|"  + imgs_str ;
-                     }
-                  }
-                  if(imgs_str !== ""){
-                    $("#MyImgsData").val(imgs_str);
-                  }
-                  ///-------- logo & cover
-                  $('#logo_valhide').val()
-                  $('#cover_valhide').val()
-                }
-                  formDataList = frmdata.serialize() ;
-                  //console.log(formDataList);
-                   $.post( link ,  formDataList ).done(function( data ) {
-                        processfrom(data);
-                  });
-                function processfrom(data) 
-                {
-                    console.log(data); //return;
-                    res = JSON.parse(data);
-                    if (res[0]) {
-                        if(res[1]=="step2"){
-                            swal({
-                                title: 'Validated!',
-                                text: ' Turn to Next Step.',
-                                type: 'success',
-                                timer: 3000,
-                                html: true,
-                                showConfirmButton:true
-                            });
-                         $("#step1").removeClass("active");
-                         $("#step2").addClass("active");
-                         document.getElementById("step2").scrollIntoView(true);
-                        }else if(res[1]=="step3"){
-                            //set_validate()
-                            swal({
-                                title: 'Validated!',
-                                text: ' Turn to Next Step.',
-                                type: 'success',
-                                timer: 3000,
-                                html: true,
-                                showConfirmButton:true
-                            });
-                         $("#step2").removeClass("active");
-                         $("#step3").addClass("active");
-                         document.getElementById("step3").scrollIntoView(true);
-                        }else if(res[1]=="step4"){
-                              console.log(res);
-                                 swal({
-                                    title: 'Done!',
-                                    text: 'Ahead to the next step.',
-                                    type: 'success',
-                                    timer: 6000,
-                                    html: true,
-                                    showConfirmButton:true
-                                    });
-                                 $("#step3").removeClass("active");
-                                 $("#step4").addClass("active");
-                                 document.getElementById("step4").scrollIntoView(true);
-                        }else{  swal("STH STEPS WORNG");   }
-                    } else{ 
-                         swal({
-                                title: 'Not validate!',
-                                text: 'Please complete the required files.',
-                                type: 'error',
-                                timer: 6000,
-                                html: true,
-                                showConfirmButton:true
-                            });
-                            // console.log('errors');
-                            errors = res[2];
-                            lisVal = $(".lst_spn_val");
-                            for (var i = 0; i < lisVal.length; i++) {
-                              cid= $(lisVal[i]).attr('id');
-                              c= $(lisVal[i]).attr('id').replace('v-','');
-                              
-                                if(errors[c]  != ""){
-                                    $("input[name='"+c+"']").removeClass("validate");
-                                    $("#"+ cid).html(errors[c]);
-                                    $("#"+ cid).addClass(" invalid ");
-                                    console.log( c );
-                                }else{
-                                    $("input[name='"+c+"']").addClass("validate");
-                                    $("#"+ cid).html("");
-                                    $("#"+ cid ).removeClass(" invalid ");
-                                }
-                            } 
-                      }
-                }
-                $("#prev-to-step2").click(function(){
-                    $("#step3").removeClass('active');
-                    $("#step2").addClass('active');
-                    document.getElementById("step2").scrollIntoView(true);
-                });
-                $("#prev-to-step1").click(function(){
-                    $("#step2").removeClass('active');
-                    $("#step1").addClass('active');
-                    document.getElementById("step1").scrollIntoView(true);
-                });
-            });
-
-        });
-    </script>
+  
     <script type="text/javascript">
       $(document).ready(function () {
           $('body').click(function(){
